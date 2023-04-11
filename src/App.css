@@ -1,42 +1,85 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@media(max-width:732px){
+  .appointment-thumb {
+      width: 100%;
+      margin-top: 40px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .appointment-thumb .images-group .img1 {
+      height: 71%;
+  }
+
+  .about-images .exp-bx {
+      font-size: 94px;
+      
+  }
+
+  .about-images .exp-bx span {
+      font-size: 15px;
+  }
+
+  .about-images:after {
+      top: 34%;
+  }
+
+  .thumb-wraper ul li a {
+      width: 50px;
+      height: 50px;
+  }
+
+  .page-banner-entry nav {
+      width: 70% !important;
+  }
+
+  footer .widget.footer-widget ul {
+      margin-bottom: 0;
+      padding-left: 0;
+  }
+
+  .appointment-form {
+      background-color: #fff;
+      box-shadow: 0 10px 60px 0 rgb(31 34 120 / 10%);
+      border-radius: 40px;
+      padding: 40px 35px;
+      text-align: center;
+      position: relative;
+      margin-left: 0;
+  }
+
+  footer .widget .footer-title {
+      margin-bottom: 30px;
+      position: relative;
+      padding-bottom: 20px;
+      font-size: 20px !important;
+  }
+
+  .footer .footer-social-link ul {
+      text-align: center;
+      padding-left: 0;
+  }
+
+  .social-media li {
+      display: inline-block;
+      padding: 0 3px;
+      margin-top: 6px;
+  }
+
+  h4 {
+      font-size: 20px;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media(max-width:1024px){
+  .appointment-thumb {
+      width: 100%;
+      margin-top: 40px;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .appointment-thumb .images-group .img1 {
+      height: 71%;
+  }
 
-.read-the-docs {
-  color: #888;
+  .page-banner-entry nav {
+      width: 70% !important;
+  }
 }
