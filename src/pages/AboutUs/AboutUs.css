@@ -73,18 +73,6 @@
     color: #1f2278;
 }
 
-.about-images .exp-bx:after {
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 100%;
-    height: 100%;
-    border: 2px solid #565acf;
-    border-radius: 60px 60px 0 60px;
-    z-index: -1;
-}
-
 img {
     border-style: none;
     height: auto;
@@ -92,18 +80,6 @@ img {
     vertical-align: middle;
 }
 
-.about-images:after {
-    content: "";
-    position: absolute;
-    top: 49%;
-    left: 43%;
-    width: 50px;
-    height: 50px;
-    background-color: #f17732;
-    border-radius: 15px;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
 
 .heading-bx {
     margin-bottom: 45px;
@@ -170,18 +146,6 @@ img {
     font-weight: 600;
     color: #1f2278;
     margin: 0;
-}
-
-.feature1:after {
-    content: "";
-    width: 85px;
-    height: 85px;
-    background-color: #ecfcff;
-    position: absolute;
-    border-radius: 50%;
-    z-index: -1;
-    top: -8px;
-    left: -12px;
 }
 
 .btn{
@@ -278,18 +242,6 @@ h3{
 
 .service-wraper .slick-slider {
     margin-right: -100px;
-}
-
-.service-wraper:after {
-    content: "";
-    background-color: #565acf;
-    height: 100%;
-    width: 45%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: -1;
-    border-radius: 40px 0 0 40px;
 }
 
 .slick-slide {
@@ -466,16 +418,4 @@ a, a.active, a:focus, a:hover {
 .feature-bx3:hover h2 , .feature-bx3:hover h5 , .feature-bx3:hover p{
     color: #fff !important;
     transition: all 0.7s;
-}
-
-.feature-bx3:after {
-    content: "";
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    border-radius: 20px;
-    width: 100%;
-    height: 100%;
-    border: 2px solid #565acf;
-    z-index: -1;
 }
