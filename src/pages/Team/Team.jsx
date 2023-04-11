@@ -11,7 +11,7 @@ function Team() {
             <div className="page-banner">
                 <div className="container">
                     <div className="page-banner-entry text-center">
-                        <h1>Our Team</h1>
+                        <h1>Our Doctors</h1>
                         <nav aria-label="breadcrumb" className="breadcrumb-row">
                             <ul className="breadcrumb">
                                 <li className="breadcrumb-item">
@@ -21,7 +21,7 @@ function Team() {
                                     </Link>
                                 </li>
                                 <li className="breadcrumb-item active" aria-current="page">
-                                    Our Team
+                                    Our Doctors
                                 </li>
                             </ul>
                         </nav>
