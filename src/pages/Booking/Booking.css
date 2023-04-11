@@ -1,0 +1,115 @@
+.service-wraper:after {
+    content: "";
+    height: 100%;
+    width: 45%;
+    background-color: #fff !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    border-radius: 40px 0 0 40px;
+}
+
+.page-banner {
+    background: #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(../../assets/footerBackground.jpg);
+    position: relative;
+    overflow: hidden;
+    height: 420px;
+    width: 100%;
+    z-index: 1;
+}
+
+.page-banner .page-banner-entry {
+    height: 420px;
+    padding-top: 6em;
+    padding-bottom: 60px;
+}
+
+.page-banner h1 {
+    font-size: 62px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1f2278;
+    text-transform: capitalize;
+}
+
+.breadcrumb-row {
+    box-shadow: 0 5px 30px 0 rgb(86 90 207 / 30%);
+    font-family: "Montserrat",sans-serif;
+    background-color: #565acf !important;
+    padding: 12px 30px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.breadcrumb-row ul {
+    background: transparent;
+    padding: 0;
+    justify-content: center;
+    margin: 0;
+}
+
+.breadcrumb-row ul li {
+    font-size: 14px;
+    padding: 0;
+    display: inline-flex;
+    font-weight: 500;
+    align-items: center;
+}
+
+.breadcrumb-row ul li a {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.breadcrumb-row ul li a svg {
+    margin-right: 10px;
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+    color: #fff;
+    font-size: 20px;
+}
+
+.page-banner-entry nav{
+    width: 27%;
+    transition: all 0.5s;
+    z-index: 997;
+}
+
+.text-center {
+    text-align: center!important;
+}
+
+.breadcrumb-item.active {
+    color: white !important;
+}
+
+.breadcrumb-item+.breadcrumb-item:before {
+    font-size: 18px;
+    padding-right: 10px;
+    line-height: 18px;
+    color: #ffffff !important;
+    content: "/";
+    opacity: .4;
+    font-weight: 300;
+    margin-top: 5px;
+}
+
+.page-banner:after {
+    content: "";
+    background-image: url(download4554.png);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    z-index: -1;
+}
