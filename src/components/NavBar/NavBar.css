@@ -110,7 +110,9 @@ nav .navbar-nav button:hover{
 .navbar-nav .dropdown-menu a:hover{
     color: #565acf !important;
 }
-
+.nav-link-buttons-margin{
+    margin-right: 0 !important;
+}
 @media(max-width:992px) {
     nav .navbar-nav a{
         margin-bottom: 16px;

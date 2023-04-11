@@ -31,29 +31,28 @@ function NavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Link to={'/'} className='nav-link'>Home</Link>
-            <NavDropdown title="Pages" id="basic-nav-dropdown">
-              <Link to={'/about'} className='dropdown-item'>About Us</Link>
-              <Link to={"/ourteam"} className='dropdown-item'>
-                Our Team
-              </Link>
-              <Link to={"/faqs"} className='dropdown-item'>FAQ's</Link>
-              <Link to={"/booking"} className='dropdown-item'>
+            <Link to={"/booking"} className='nav-link'>
                 Booking
               </Link>
-              <Link to={"/login"} className='dropdown-item'>
-                Login / Register
-              </Link>
-            </NavDropdown>
-            <NavDropdown title="Services" id="basic-nav-dropdown">
+            {/* <NavDropdown title="Services" id="basic-nav-dropdown">
               <Link to={"/service"} className='dropdown-item'>Service</Link>
               <Link to={"/servicedetails"} className='dropdown-item'>
                 Service Details
               </Link>
-            </NavDropdown>
+            </NavDropdown> */}
+            <Link to={"/doctors"} className='nav-link'>
+              Our Doctors
+            </Link>
             <Link to={"/Contact"} className='nav-link'>Contact Us</Link>
             <Nav.Link> <FaSearch /> </Nav.Link>
-            <Link to="/Contact" className='nav-link'>
-              <Link to={'/contact'}><button type='button'>Contact Us <span> <IoIosArrowForward /> </span></button></Link>
+            <NavDropdown title="Sign Up" id="basic-nav-dropdown">
+              <Link to={"/signup"} className='dropdown-item'>Sign Up</Link>
+              <Link to={"/signupdoctor"} className='dropdown-item'>
+                Sign Up for Doctor
+              </Link>
+            </NavDropdown>
+            <Link to="/login" className='nav-link nav-link-buttons-margin'>
+              <Link to={'/login'}><button type='button'>Login <span> <IoIosArrowForward /> </span></button></Link>
             </Link>
           </Nav>
         </Navbar.Collapse>
@@ -62,4 +61,4 @@ function NavBar() {
   </div>
 }
 
-export default NavBar;
+export default NavBar; 
