@@ -15,7 +15,7 @@ function Team() {
                         <nav aria-label="breadcrumb" className="breadcrumb-row">
                             <ul className="breadcrumb">
                                 <li className="breadcrumb-item">
-                                    <Link to={"/home"}>
+                                    <Link to={"/"}>
                                         <FiHome />
                                         Home
                                     </Link>

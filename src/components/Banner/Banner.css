@@ -2,7 +2,6 @@
 .banner{
     margin-top: 0px;
     position: relative !important;
-    background-image: url(bg1.c53c8971.jpg);
     background-repeat: no-repeat;
     height: 800px;
     background-position: 50%;
@@ -60,14 +59,13 @@
     height: auto;
     max-width: 100%;
     vertical-align: middle;
-    animation: up-down 2.5s infinite alternate;
+    animation: up-down 1s infinite alternate;
     position: relative;
 }
 
 @keyframes up-down {
     0% {top: 0px; }
     100% {top: 12px; }
-
 }
 
 .banner:after{
@@ -77,7 +75,6 @@
     left: 0;
     bottom: 0;
     position: absolute;
-    background-image: url(shape1.1112f1ac.png);
     background-repeat: no-repeat;
     background-position: 0 100%;
     background-size: 100%;
