@@ -205,7 +205,7 @@ img {
     overflow: hidden;
     padding: 30px;
     box-shadow: 1px 1px 50px rgb(0 0 0 / 8%);
-    background-image: url(slidderback.png);
+    background-image: url(../../assets/slidderback.png);
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -368,7 +368,7 @@ a, a.active, a:focus, a:hover {
 }
 
 .blog-area{
-    background-image: url(line-bg2.cfded2fd.png);
+    background-image: url(../../assets/linebg2.png);
     background-position: center center;
     background-size: cover;
 }
