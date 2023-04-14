@@ -91,6 +91,32 @@ export const authApiSlice = apiSlice.injectEndpoints({
         message: response.data?.message,
       }),
     }),
+    getDepartments: builder.query({
+      query: () => {
+        return {
+          url: `hospital/departments`,
+          method: "GET",
+        };
+      },
+      transformErrorResponse: (response) => ({
+        status: response.status,
+        error: response.error,
+        message: response.data?.message,
+      }),
+    }),
+    getDeptDoctors: builder.query({
+      query: () => {
+        return {
+          url: `hospital/doctors`,
+          method: "GET",
+        };
+      },
+      transformErrorResponse: (response) => ({
+        status: response.status,
+        error: response.error,
+        message: response.data?.message,
+      }),
+    }),
   }),
 });
 
@@ -100,5 +126,7 @@ export const {
   useAddProfileMutation,
   useGetUserMutation,
   useUpdateProfileMutation,
-  useGetProfileMutation
+  useGetProfileMutation,
+  useLazyGetDepartmentsQuery,
+  useLazyGetDeptDoctorsQuery
 } = authApiSlice;

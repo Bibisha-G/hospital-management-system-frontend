@@ -76,7 +76,7 @@ function UserNavBar() {
                 <Link to={"/"} className="nav-link">
                   Home
                 </Link>
-                <Link to={"/booking"} className="nav-link">
+                <Link to={"/dashboard/booking"} className="nav-link">
                   Booking
                 </Link>
                 {/* <NavDropdown title="Services" id="basic-nav-dropdown">

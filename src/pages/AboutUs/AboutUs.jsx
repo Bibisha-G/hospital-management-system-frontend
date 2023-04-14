@@ -4,10 +4,12 @@ import abouti2 from '../../assets/about2.jpg';
 import abouti3 from '../../assets/about3.jpg';
 import { FaAmbulance, FaBed, FaSyringe } from "react-icons/fa";
 import { IoWater } from "react-icons/io5";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import TopDoctors from "../../components/TopDoctors/TopDoctors";
 import './AboutUs.css'
 function AboutUs() {
+    const location = useLocation()
+    const breadcrumbs = location.pathname.split('/')
     return <div>
         <div className="banner-wraper">
             <div className="page-banner">
@@ -16,12 +18,20 @@ function AboutUs() {
                         <h1>About Us</h1>
                         <nav aria-label="breadcrumb" className="breadcrumb-row">
                             <ul className="breadcrumb">
+                            {breadcrumbs && breadcrumbs.length > 2 ?
+                                <li className="breadcrumb-item">
+                                    <Link to={"/dashboard"}>
+                                        <FiHome />
+                                        Dashboard
+                                    </Link>
+                                </li>:
                                 <li className="breadcrumb-item">
                                     <Link to={"/"}>
                                         <FiHome />
                                         Home
                                     </Link>
                                 </li>
+                            }
                                 <li className="breadcrumb-item active" aria-current="page">
                                     About Us
                                 </li>

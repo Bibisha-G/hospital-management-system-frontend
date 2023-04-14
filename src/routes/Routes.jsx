@@ -77,6 +77,10 @@ const Router = createBrowserRouter([
                 element: <Dashboard />,
               },
               {
+                path: "booking",
+                element: <Booking />,
+              },
+              {
                 path: "complete_profile",
                 element: <ProfileCompletion />,
               },

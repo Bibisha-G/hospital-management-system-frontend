@@ -8,9 +8,11 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Contact() {
+  const location = useLocation()
+  const breadcrumbs = location.pathname.split('/')
   return (
     <div>
       <div className="banner-wraper">
@@ -20,12 +22,20 @@ function Contact() {
               <h1>Contact Us</h1>
               <nav aria-label="breadcrumb" className="breadcrumb-row">
                 <ul className="breadcrumb">
+                {breadcrumbs && breadcrumbs.length > 2 ? 
+                  <li className="breadcrumb-item">
+                    <Link to={"/dashboard"}>
+                      <FiHome />
+                      Dashboard
+                    </Link>
+                  </li>:
                   <li className="breadcrumb-item">
                     <Link to={"/"}>
                       <FiHome />
                       Home
                     </Link>
                   </li>
+                }
                   <li className="breadcrumb-item active" aria-current="page">
                     Contact Us
                   </li>
