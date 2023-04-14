@@ -4,6 +4,7 @@ export const appointmentApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createApointment: builder.mutation({
       query: (body) => {
+        console.log(body);
         return {
           url: `hospital/appointments/`,
           method: "POST",

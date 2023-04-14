@@ -34,6 +34,7 @@ function Appointment() {
   const handleDept = async (value) => {
     try {
       let response = await getDoctors(value).unwrap();
+      console.log(response);
       setDoctors(response)
     }
     catch (e) {
@@ -118,7 +119,7 @@ function Appointment() {
                               >
                                 <option disabled value="" hidden>Select Doctor</option>
                                 {doctors && doctors.map((doc) => (
-                                  <option value={doc.id} key={doc.id}>{doc.name}</option>
+                                  <option value={doc.id} key={doc.id}>{doc.user.name}</option>
 
                                 ))}
 
