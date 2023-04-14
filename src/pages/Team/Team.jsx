@@ -3,9 +3,11 @@ import { FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import member4 from '../../assets/doctor4.jpg';
 import member5 from '../../assets/doctor5.jpg';
 import member6 from '../../assets/doctor6.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Team() {
+    const location = useLocation()
+    const breadcrumbs = location.pathname.split('/')
     return <div>
         <div className="banner-wraper">
             <div className="page-banner">
@@ -14,12 +16,20 @@ function Team() {
                         <h1>Our Doctors</h1>
                         <nav aria-label="breadcrumb" className="breadcrumb-row">
                             <ul className="breadcrumb">
+                            {breadcrumbs && breadcrumbs.length > 2 ?
+                                <li className="breadcrumb-item">
+                                    <Link to={"/dashboard"}>
+                                        <FiHome />
+                                        Dashboard
+                                    </Link>
+                                </li>:
                                 <li className="breadcrumb-item">
                                     <Link to={"/"}>
                                         <FiHome />
                                         Home
                                     </Link>
                                 </li>
+                            }
                                 <li className="breadcrumb-item active" aria-current="page">
                                     Our Doctors
                                 </li>

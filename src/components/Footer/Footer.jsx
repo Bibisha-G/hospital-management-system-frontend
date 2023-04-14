@@ -41,19 +41,8 @@ function Footer(){
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to={'/service'}>
-                                        <span>Services</span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to={'/booking'}>
-                                        <span>Booking</span>
-                                    </Link>
-                                </li>
-                                
-                                <li>
-                                    <Link to={'/doctors'}>
-                                        <span>Our Doctors</span>
+                                    <Link to={'/about'}>
+                                        <span>About Us</span>
                                     </Link>
                                 </li>
                             </ul>
