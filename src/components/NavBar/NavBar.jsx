@@ -59,8 +59,8 @@ function NavBar() {
                 <Link to={"/"} className="nav-link">
                   Home
                 </Link>
-                <Link to={"/booking"} className="nav-link">
-                  Booking
+                <Link to={"/about"} className="nav-link">
+                  About Us
                 </Link>
                 {/* <NavDropdown title="Services" id="basic-nav-dropdown">
               <Link to={"/service"} className='dropdown-item'>Service</Link>
@@ -68,9 +68,6 @@ function NavBar() {
                 Service Details
               </Link>
             </NavDropdown> */}
-                <Link to={"/doctors"} className="nav-link">
-                  Our Doctors
-                </Link>
                 <Link to={"/Contact"} className="nav-link">
                   Contact Us
                 </Link>

@@ -8,7 +8,6 @@ function Home() {
     <>
         <Banner/>
         <Process/>
-        <Appointment/>
         <TopDoctors/>
     </>
   )

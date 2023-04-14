@@ -84,7 +84,7 @@ function UserNavBar() {
                 Service Details
               </Link>
             </NavDropdown> */}
-                <Link to={"/doctors"} className="nav-link">
+                <Link to={"/dashboard/doctors"} className="nav-link">
                   Our Doctors
                 </Link>
                 <Link to={"/Contact"} className="nav-link">

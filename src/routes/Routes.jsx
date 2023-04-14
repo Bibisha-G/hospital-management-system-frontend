@@ -48,16 +48,8 @@ const Router = createBrowserRouter([
             element: <Home />,
           },
           {
-            path: "booking",
-            element: <Booking />,
-          },
-          {
             path: "contact",
             element: <Contact />,
-          },
-          {
-            path: "doctors",
-            element: <Team />,
           },
           {
             path: "about",
@@ -79,6 +71,10 @@ const Router = createBrowserRouter([
               {
                 path: "booking",
                 element: <Booking />,
+              },
+              {
+                path: "doctors",
+                element: <Team />,
               },
               {
                 path: "complete_profile",
