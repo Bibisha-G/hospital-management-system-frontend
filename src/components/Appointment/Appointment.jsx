@@ -2,9 +2,9 @@ import MobileImg from "../../assets/mobile.png";
 import WomanImg from "../../assets/womenCartoon.png";
 import "./Appointment.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-
-import { useLazyGetDepartmentsQuery } from "../../features/auth/authApiSlice";
 import { useEffect, useState } from "react";
+import { useLazyGetDepartmentsQuery } from "../../features/department/departmentApiSlice";
+
 function Appointment() {
   const [departments, setDepartments] = useState()
   const [getDepartments, { isLoading }] = useLazyGetDepartmentsQuery()
