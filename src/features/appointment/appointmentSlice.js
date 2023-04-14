@@ -7,8 +7,8 @@ const initialState = {
 
 };
 
-export const department = createSlice({
-  name: "department",
+export const appointmentSlice = createSlice({
+  name: "appointment",
   initialState: initialState,
   reducers: {
 
@@ -16,4 +16,4 @@ export const department = createSlice({
 });
 
 
-export default department.reducer;
+export default appointmentSlice.reducer;
