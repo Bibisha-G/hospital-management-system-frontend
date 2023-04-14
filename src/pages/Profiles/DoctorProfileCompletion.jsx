@@ -18,6 +18,7 @@ import { useNavigate } from "react-router";
 import { useUpdateProfileMutation } from "../../features/auth/authApiSlice";
 import { selectUser } from "../../features/auth/authSlice";
 import { useSelector } from "react-redux";
+import DoctorProfileSchema from "../../validations/schemas/DoctorProfileSchema";
 
 function DoctorProfileCompletion() {
   const { intialUploadState, successUploadState, errorUploadState } =
@@ -35,7 +36,6 @@ function DoctorProfileCompletion() {
     setUploadStatus(intialUploadState);
     if (imageData !== null) {
       //! REMOVE previously updated file from cloud.
-      console.log("IM HERERERERRE", imageData);
       setImageData(null);
     }
   };
@@ -85,10 +85,10 @@ function DoctorProfileCompletion() {
   );
   const initialValues = {
     age: "",
-    height: "",
-    weight: "",
+    specialization: "",
     is_private: false,
     info: "",
+    department: "",
   };
   const mutateFormValues = (formValues, mediaUrl) => ({
     ...formValues,
@@ -106,7 +106,6 @@ function DoctorProfileCompletion() {
         toggleUploadLoading((state) => !state);
         //? toggle the loading for upload to cloudinary.
         const mediaUploadResponse = await uploadMedia(files[0]);
-        console.log(mediaUploadResponse);
         toggleUploadLoading((state) => !state);
         //? adter response is received. toggle the loading.
         if (mediaUploadResponse.status === 200) {
@@ -168,7 +167,7 @@ function DoctorProfileCompletion() {
           <div className="pt-2">
             <Formik
               initialValues={initialValues}
-              validationSchema={PatientProfileSchema}
+              validationSchema={DoctorProfileSchema}
               onSubmit={(values) =>
                 handleDropzoneErrors() && handleSubmit(values)
               }
@@ -189,59 +188,12 @@ function DoctorProfileCompletion() {
                     <Container className="w-100 p-0">
                       <Row>
                         <Col>
-                          <Form.Group
-                            className="mb-3"
-                            controlId="formBasicHeight"
-                          >
-                            <InputGroup hasValidation>
-                              <Form.Control
-                                type="number"
-                                name="height"
-                                placeholder="Height (cm)"
-                                className="py-4 field-color rounded-0"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.height}
-                                disabled={uploadLoading}
-                              />
-                              <Form.Control.Feedback type="invalid">
-                                {errors.height}
-                              </Form.Control.Feedback>
-                            </InputGroup>
-                          </Form.Group>
-                        </Col>
-                        <Col>
-                          <Form.Group
-                            className="mb-3"
-                            controlId="formBasicWeight"
-                          >
-                            <InputGroup>
-                              <Form.Control
-                                type="number"
-                                placeholder="Weight (kg)"
-                                className="py-4 field-color rounded-0"
-                                name="weight"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.weight}
-                                disabled={uploadLoading}
-                              />
-                              <Form.Control.Feedback type="invalid">
-                                {errors.weight}
-                              </Form.Control.Feedback>
-                            </InputGroup>
-                          </Form.Group>
-                        </Col>
-                        <Col>
-                          <Form.Group
-                            className="mb-3"
-                            controlId="formBasicWeight"
-                          >
+                          <Form.Group className="mb-3" controlId="formBasicAge">
                             <InputGroup>
                               <Form.Control
                                 type="number"
                                 required
-                                placeholder="age"
+                                placeholder="Age"
                                 className="py-4 field-color rounded-0"
                                 name="age"
                                 onChange={handleChange}
@@ -256,15 +208,84 @@ function DoctorProfileCompletion() {
                               </Form.Control.Feedback>
                             </InputGroup>
                           </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="formBasicWeight"
+                          >
+                            <InputGroup>
+                              <Form.Control
+                                type="text"
+                                required
+                                placeholder="Your doctoral specialization"
+                                className="py-4 field-color rounded-0"
+                                name="specialization"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.specialization}
+                                disabled={uploadLoading}
+                                isInvalid={
+                                  touched.specialization &&
+                                  !!errors.specialization
+                                }
+                                isValid={
+                                  touched.specialization &&
+                                  !errors.specialization
+                                }
+                              />
+                              <Form.Control.Feedback type="invalid">
+                                {errors.specialization}
+                              </Form.Control.Feedback>
+                            </InputGroup>
+                            <span
+                              className="text-muted d-flex justify-content-end"
+                              style={{ fontSize: "12px" }}
+                            >
+                              <span
+                                className={
+                                  values.specialization?.length > 75
+                                    ? "text-danger"
+                                    : undefined
+                                }
+                              >
+                                {values.specialization?.length}
+                              </span>
+                              /75
+                            </span>
+                          </Form.Group>
+                        </Col>
+                      </Row>
+                      <Row className="pt-4">
+                        <Col>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="formBasicDepartment"
+                          >
+                            <InputGroup>
+                              <Form.Select
+                                required
+                                className="py-4 field-color rounded-0 form-select-md"
+                                name="department"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.department}
+                                disabled={uploadLoading}
+                              >
+                                <option value="0">Department</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </Form.Select>
+                            </InputGroup>
+                          </Form.Group>
                         </Col>
                       </Row>
                       <Row className="pt-4">
                         <Col>
                           <span className="text-muted">
-                            Take a moment to provide a brief description of
-                            yourself that doctors may see. This information will
-                            help them understand your medical needs better and
-                            provide you with more personalized care
+                            Provide a brief introduction about yourself. This
+                            information will help patients get to know you
+                            better and feel more comfortable seeking your
+                            medical expertise
                           </span>
                           <Form.Group
                             className="mb-3 py-3"

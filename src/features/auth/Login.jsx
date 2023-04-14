@@ -31,10 +31,18 @@ const Login = () => {
       dispatch(setCredentials(response));
       navigate("/");
     } catch (err) {
-      ErrorToast(err.error);
-      ErrorToast(err.message);
+      ErrorToast(AccountNotFound());
     }
   };
+
+  const AccountNotFound = () => (
+    <div>
+      <h6 className="text-danger">Account not found</h6>
+      <span>
+        Check your email for account activation email if you are a new user.
+      </span>
+    </div>
+  );
 
   const passwordHandler = () => {
     setShowPassword(!showPassword);
@@ -152,7 +160,6 @@ const Login = () => {
                       type="submit"
                       disabled={isLoading}
                       onClick={() => navigate("/register_patient")}
-                    
                     >
                       Create Account
                     </Button>

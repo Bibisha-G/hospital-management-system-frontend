@@ -34,8 +34,7 @@ const SignupPatient = () => {
       navigate("/login");
       SuccessToast("Account created successfully!");
     } catch (err) {
-      ErrorToast(err.error);
-      ErrorToast(err.message);
+      ErrorToast(err);
     }
   };
 

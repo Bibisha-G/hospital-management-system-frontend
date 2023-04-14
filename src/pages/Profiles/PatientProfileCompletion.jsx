@@ -20,7 +20,6 @@ import { selectUser } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setProfile } from "../../features/auth/authSlice";
 function PatientProfileCompletion() {
-
   const { intialUploadState, successUploadState, errorUploadState } =
     uploadStates;
   const user = useSelector(selectUser);
@@ -31,7 +30,7 @@ function PatientProfileCompletion() {
   const [uploadLoading, toggleUploadLoading] = useState();
   const [uploadStatus, setUploadStatus] = useState(intialUploadState);
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const dropzoneCleanup = () => {
     setDropzoneErrors([]);
@@ -87,9 +86,9 @@ function PatientProfileCompletion() {
     </>
   );
   const initialValues = {
-    age: 0,
-    height: 0,
-    weight: 0,
+    age: "",
+    height: "",
+    weight: "",
     is_private: false,
     info: "",
   };
@@ -127,7 +126,7 @@ function PatientProfileCompletion() {
             mutateFormValues(values, mediaUploadResponse.url)
           ).unwrap();
           console.log(response);
-          dispatch(setProfile(response))
+          dispatch(setProfile(response));
           //? call the api with form values and upload response.
           SuccessToast(response.message);
           navigate("/dashboard");
@@ -247,7 +246,7 @@ function PatientProfileCompletion() {
                               <Form.Control
                                 type="number"
                                 required
-                                placeholder="age"
+                                placeholder="Age"
                                 className="py-4 field-color rounded-0"
                                 name="age"
                                 onChange={handleChange}

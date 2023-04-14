@@ -22,7 +22,7 @@ function UserNavBar() {
   const userType = useSelector(selectTypeQuery);
   const user = useSelector(selectUser);
   const profile = useSelector(selectProfile);
-  const [getProfile,{isLoading}] = useGetProfileMutation()
+  const [getProfile, { isLoading }] = useGetProfileMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [scrollDirection, setScrollDirection] = useState("none");
@@ -31,14 +31,14 @@ function UserNavBar() {
     navigate("/");
   };
   useEffect(() => {
-    const helper = async()=>{
+    const helper = async () => {
       console.log(user);
-      let response = await getProfile({type:userType,id:user.profile_id});
-      dispatch(setProfile(response.data));    
-    }
-    user && helper()
-  }, [user])
-  
+      let response = await getProfile({ type: userType, id: user.profile_id });
+      dispatch(setProfile(response.data));
+    };
+    user && helper();
+  }, [user]);
+
   // useEffect(() => {
   //   function handleScroll() {
   //     var navbar = document.querySelector("nav");
@@ -93,19 +93,18 @@ function UserNavBar() {
                 </Link>
               </Nav>
               <Nav className="justify-content-center">
-              {profile && !profile?.is_complete &&
-                <div className="nav-link nav-link-buttons-margin">
-                  <Link to={"complete_patient_profile"}>
-                    <button type="button">
-                      Complete Profile{" "}
-                      <span>
-                        {" "}
-                        <IoIosArrowForward />{" "}
-                      </span>
-                    </button>
-                  </Link>
-                </div>
-              }
+                {profile && !profile?.is_complete && (
+                  <div className="nav-link nav-link-buttons-margin">
+                    <Link to="complete_profile">
+                      <button type="button">
+                        Complete Profile
+                        <span>
+                          <IoIosArrowForward />
+                        </span>
+                      </button>
+                    </Link>
+                  </div>
+                )}
                 <NavDropdown
                   title={
                     <img
@@ -118,7 +117,7 @@ function UserNavBar() {
                   align="end"
                 >
                   <button onClick={handleLogout} type="button">
-                    Logout{" "}
+                    Logout
                   </button>
                 </NavDropdown>
               </Nav>
