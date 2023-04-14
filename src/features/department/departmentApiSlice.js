@@ -16,9 +16,9 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getDeptDoctors: builder.query({
-      query: () => {
+      query: (id) => {
         return {
-          url: `hospital/doctors`,
+          url: `doctors/get_doctors_by_department/?department_id=${id}`,
           method: "GET",
         };
       },

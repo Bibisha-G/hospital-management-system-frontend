@@ -87,7 +87,7 @@ function DoctorProfileCompletion({ departments }) {
     specialization: "",
     is_private: false,
     info: "",
-    department: 0,
+    department: "",
   };
   const mutateFormValues = (formValues, mediaUrl) => ({
     ...formValues,
@@ -275,9 +275,9 @@ function DoctorProfileCompletion({ departments }) {
                                 }
                                 disabled={uploadLoading}
                               >
-                                <option value="0">Department</option>
+                                <option disabled value="" hidden>Department</option>
                                 {departments &&
-                                  departments.map((department, index) => (
+                                  departments.map((department) => (
                                     <option
                                       value={department.id}
                                       key={department.id}
@@ -286,10 +286,10 @@ function DoctorProfileCompletion({ departments }) {
                                     </option>
                                   ))}
                               </Form.Select>
+                              <Form.Control.Feedback type="invalid">
+                                {errors.department}
+                              </Form.Control.Feedback>
                             </InputGroup>
-                            <Form.Control.Feedback type="invalid">
-                              {errors.department}
-                            </Form.Control.Feedback>
                           </Form.Group>
                         </Col>
                       </Row>

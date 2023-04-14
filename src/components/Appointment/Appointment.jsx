@@ -4,10 +4,13 @@ import "./Appointment.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useEffect, useState } from "react";
 import { useLazyGetDepartmentsQuery } from "../../features/department/departmentApiSlice";
-
+import { useLazyGetDeptDoctorsQuery } from "../../features/department/departmentApiSlice";
 function Appointment() {
   const [departments, setDepartments] = useState()
+  const [doctors, setDoctors] = useState()
+
   const [getDepartments, { isLoading }] = useLazyGetDepartmentsQuery()
+  const [getDoctors, { isLoading: LoadingDoctors }] = useLazyGetDeptDoctorsQuery()
 
   useEffect(() => {
     let getData = async () => {
@@ -25,7 +28,15 @@ function Appointment() {
     phone: "",
     date: "",
   };
-
+  const handleDept = async (value) => {
+    try {
+      let response = await getDoctors(value).unwrap();
+      console.log(response);
+    }
+    catch(e) {
+      console.log(error);
+    }
+  }
   const onSubmit = (values) => {
     console.log(values);
   };
@@ -55,31 +66,40 @@ function Appointment() {
                                 className="form-select form-control"
                                 placeholder="Select Department"
                                 value={values.department}
-                                onChange={handleChange}
+                                onChange={(e) => handleDept(e.target.value)}
                                 onBlur={handleBlur}
                               >
                                 <option disabled value="" hidden>Select Department</option>
                                 {departments && departments.map((dep) => (
-                                  <option value={dep.name} key={dep.id}>{dep.name}</option>
+                                  <option value={dep.id} key={dep.id}>{dep.name}</option>
 
                                 ))}
                               </Field>
                             )}
                           </div>
                           <div className="form-group">
-                            <Field
-                              name="doctor"
-                              as="select"
-                              className="form-select form-control"
-                              value={values.doctor}
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                            >
-                              <option>Select Doctor</option>
-                              <option value={1}>One</option>
-                              <option value={2}>Two</option>
-                              <option value={3}>Three</option>
-                            </Field>
+                            {LoadingDoctors ? (
+                              <div className="spinner-border text-primary" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                              </div>
+                            ) : (
+                              <Field
+                                name="doctor"
+                                as="select"
+                                className="form-select form-control"
+                                value={values.doctor}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+
+                              >
+                                <option disabled value="" hidden>Select Doctor</option>
+                                {doctors && doctors.map((dep) => (
+                                  <option value={dep.id} key={dep.id}>{dep.name}</option>
+
+                                ))}
+
+                              </Field>
+                            )}
                           </div>
                           <div className="form-group">
                             <Field
