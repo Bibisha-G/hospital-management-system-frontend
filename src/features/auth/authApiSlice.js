@@ -54,12 +54,23 @@ export const authApiSlice = apiSlice.injectEndpoints({
         message: response.data.message,
       }),
     }),
-    updateProfile: builder.mutation({
+    updatePatientProfile: builder.mutation({
       query: (body) => {
         const { id, ...updated } = body;
         console.log(updated);
         return {
           url: `patients/${id}/`,
+          method: "PATCH",
+          body: updated,
+        };
+      },
+    }),
+    updateDoctorProfile: builder.mutation({
+      query: (body) => {
+        const { id, ...updated } = body;
+        console.log(updated);
+        return {
+          url: `doctors/${id}/`,
           method: "PATCH",
           body: updated,
         };
@@ -79,7 +90,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getProfile: builder.mutation({
-      query: ({type,id}) => {
+      query: ({ type, id }) => {
         return {
           url: `${type}/${id}`,
           method: "GET",
@@ -99,6 +110,7 @@ export const {
   useRegisterMutation,
   useAddProfileMutation,
   useGetUserMutation,
-  useUpdateProfileMutation,
-  useGetProfileMutation
+  useUpdatePatientProfileMutation,
+  useUpdateDoctorProfileMutation,
+  useGetProfileMutation,
 } = authApiSlice;

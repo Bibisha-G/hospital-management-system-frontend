@@ -12,6 +12,7 @@ const DoctorProfileSchema = () => {
       .required("Age is required"),
     is_private: Yup.boolean(),
     info: Yup.string(),
+    department: Yup.number().notOneOf([0], "Please select a department"),
   });
 
   return validationSchema;

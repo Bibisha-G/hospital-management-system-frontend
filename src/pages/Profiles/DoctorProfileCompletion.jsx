@@ -11,20 +11,19 @@ import {
 import { uploadStates } from "../../constants/constants";
 import StyledDropzone from "../../components/StyledDropzone/StyledDropzone";
 import { ErrorMessage, Field, Formik } from "formik";
-import PatientProfileSchema from "../../validations/schemas/PatientProfileSchema";
 import uploadMedia from "../../utils/uploadMedia";
 import { ErrorToast, SuccessToast } from "../../components/Toasts/Toasts";
 import { useNavigate } from "react-router";
-import { useUpdateProfileMutation } from "../../features/auth/authApiSlice";
+import { useUpdateDoctorProfileMutation } from "../../features/auth/authApiSlice";
 import { selectUser } from "../../features/auth/authSlice";
 import { useSelector } from "react-redux";
 import DoctorProfileSchema from "../../validations/schemas/DoctorProfileSchema";
 
-function DoctorProfileCompletion() {
+function DoctorProfileCompletion({ departments }) {
   const { intialUploadState, successUploadState, errorUploadState } =
     uploadStates;
   const user = useSelector(selectUser);
-  const [updateProfile] = useUpdateProfileMutation();
+  const [updateProfile] = useUpdateDoctorProfileMutation();
   const [files, setFiles] = useState([]);
   const [dropzoneErrors, setDropzoneErrors] = useState([]);
   const [imageData, setImageData] = useState(null);
@@ -88,7 +87,7 @@ function DoctorProfileCompletion() {
     specialization: "",
     is_private: false,
     info: "",
-    department: "",
+    department: 0,
   };
   const mutateFormValues = (formValues, mediaUrl) => ({
     ...formValues,
@@ -268,14 +267,29 @@ function DoctorProfileCompletion() {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.department}
+                                isInvalid={
+                                  touched.department && !!errors.department
+                                }
+                                isValid={
+                                  touched.department && !errors.department
+                                }
                                 disabled={uploadLoading}
                               >
                                 <option value="0">Department</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                {departments &&
+                                  departments.map((department, index) => (
+                                    <option
+                                      value={department.id}
+                                      key={department.id}
+                                    >
+                                      {department.name}
+                                    </option>
+                                  ))}
                               </Form.Select>
                             </InputGroup>
+                            <Form.Control.Feedback type="invalid">
+                              {errors.department}
+                            </Form.Control.Feedback>
                           </Form.Group>
                         </Col>
                       </Row>

@@ -15,7 +15,7 @@ import PatientProfileSchema from "../../validations/schemas/PatientProfileSchema
 import uploadMedia from "../../utils/uploadMedia";
 import { ErrorToast, SuccessToast } from "../../components/Toasts/Toasts";
 import { useNavigate } from "react-router";
-import { useUpdateProfileMutation } from "../../features/auth/authApiSlice";
+import { useUpdatePatientProfileMutation } from "../../features/auth/authApiSlice";
 import { selectUser } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setProfile } from "../../features/auth/authSlice";
@@ -23,7 +23,7 @@ function PatientProfileCompletion() {
   const { intialUploadState, successUploadState, errorUploadState } =
     uploadStates;
   const user = useSelector(selectUser);
-  const [updateProfile] = useUpdateProfileMutation();
+  const [updateProfile] = useUpdatePatientProfileMutation();
   const [files, setFiles] = useState([]);
   const [dropzoneErrors, setDropzoneErrors] = useState([]);
   const [imageData, setImageData] = useState(null);

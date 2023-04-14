@@ -32,6 +32,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
+  useGetDepartmentsQuery,
   useLazyGetDepartmentsQuery,
-  useLazyGetDeptDoctorsQuery
+  useGetDeptDoctorsQuery,
+  useLazyGetDeptDoctorsQuery,
 } = authApiSlice;

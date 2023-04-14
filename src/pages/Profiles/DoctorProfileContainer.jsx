@@ -3,9 +3,11 @@ import { selectProfile } from "../../features/auth/authSlice";
 import DoctorProfileCompletion from "./DoctorProfileCompletion";
 
 import { AiOutlineLock } from "react-icons/ai";
+import { useGetDepartmentsQuery } from "../../features/department/departmentApiSlice";
 
 const DoctorProfileContainer = () => {
   const profile = useSelector(selectProfile);
+  const { data } = useGetDepartmentsQuery();
   return (
     <div>
       <div className="text-center mt-5 p-5 mx-5">
@@ -24,7 +26,7 @@ const DoctorProfileContainer = () => {
           </div>
         )}
       </div>
-      <DoctorProfileCompletion />
+      <DoctorProfileCompletion departments={data} />
     </div>
   );
 };
