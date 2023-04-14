@@ -50,10 +50,15 @@ function Appointment() {
       end[end.length - 5] = String(rem % 24)
       end[end.length - 4] = parseInt(rem / 24)
     }
-    else {
-      end[end.length - 4] = String((Number(end[end.length - 4]) + 1));
+    else if(rem >= 10){
+      end[end.length - 4] = String(parseInt(rem%10));
+      end[end.length - 5] = String(parseInt(rem/10));
+    }
+    else{
+      end[end.length - 4] = String(rem);
     }
     end = end.join("");
+    console.log(values.date)
     console.log(end)
     try {
       let response = await createAppointment({start_time:values.date,end_time:end,doctor:Number(values.doctor),patient:user.id}).unwrap();
@@ -119,7 +124,7 @@ function Appointment() {
                               >
                                 <option disabled value="" hidden>Select Doctor</option>
                                 {doctors && doctors.map((doc) => (
-                                  <option value={doc.id} key={doc.id}>{doc.user.name}</option>
+                                  <option value={doc.user.id} key={doc.id}>{doc.user.name}</option>
 
                                 ))}
 
