@@ -57,24 +57,24 @@ export const authApiSlice = apiSlice.injectEndpoints({
     updatePatientProfile: builder.mutation({
       query: (body) => {
         const { id, ...updated } = body;
-        console.log(updated);
         return {
           url: `patients/${id}/`,
           method: "PATCH",
           body: updated,
         };
       },
+      invalidateTags: ["getProfile"],
     }),
     updateDoctorProfile: builder.mutation({
       query: (body) => {
         const { id, ...updated } = body;
-        console.log(updated);
         return {
           url: `doctors/${id}/`,
           method: "PATCH",
           body: updated,
         };
       },
+      invalidateTags: ["getProfile"],
     }),
     getUser: builder.mutation({
       query: (id) => {
@@ -89,13 +89,14 @@ export const authApiSlice = apiSlice.injectEndpoints({
         message: response.data?.message,
       }),
     }),
-    getProfile: builder.mutation({
+    getProfile: builder.query({
       query: ({ type, id }) => {
         return {
           url: `${type}/${id}`,
           method: "GET",
         };
       },
+      providesTags: ["getProfile"],
       transformErrorResponse: (response) => ({
         status: response.status,
         error: response.error,
@@ -112,5 +113,6 @@ export const {
   useGetUserMutation,
   useUpdatePatientProfileMutation,
   useUpdateDoctorProfileMutation,
-  useGetProfileMutation,
+  useLazyGetProfileQuery,
+  useGetProfileQuery,
 } = authApiSlice;

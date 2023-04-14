@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { NavDropdown } from "react-bootstrap";
 import logo from "../../assets/doctor1.jpg";
 import { useEffect, useState } from "react";
-import { useGetProfileMutation } from "../../features/auth/authApiSlice";
+import { useLazyGetProfileQuery } from "../../features/auth/authApiSlice";
 import { selectUser } from "../../features/auth/authSlice";
 import { setProfile } from "../../features/auth/authSlice";
 import { selectProfile } from "../../features/auth/authSlice";
@@ -22,7 +22,7 @@ function UserNavBar() {
   const userType = useSelector(selectTypeQuery);
   const user = useSelector(selectUser);
   const profile = useSelector(selectProfile);
-  const [getProfile, { isLoading }] = useGetProfileMutation();
+  const [getProfile, { isLoading }] = useLazyGetProfileQuery();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [scrollDirection, setScrollDirection] = useState("none");
@@ -32,7 +32,6 @@ function UserNavBar() {
   };
   useEffect(() => {
     const helper = async () => {
-      console.log(user);
       let response = await getProfile({ type: userType, id: user.profile_id });
       dispatch(setProfile(response.data));
     };
