@@ -10,7 +10,7 @@ import { useCreateApointmentMutation } from "../../features/appointment/appointm
 import { selectUser } from "../../features/auth/authSlice";
 import { useSelector } from "react-redux";
 import { Spinner } from "react-bootstrap";
-function Appointment() {
+function Appointment({doctor_id,dept_id}) {
   const [departments, setDepartments] = useState()
   const [doctors, setDoctors] = useState()
   const user = useSelector(selectUser)
@@ -23,12 +23,17 @@ function Appointment() {
       let response = await getDepartments().unwrap();
       setDepartments(response);
     }
+    let doctData = async (dept_id) => {
+      let response = await getDoctors(dept_id).unwrap()
+      setDoctors(response)
+    }
     getData()
+    dept_id && doctData(dept_id)
   }, [])
 
   const initialValues = {
-    department: "",
-    doctor: "",
+    department: dept_id,
+    doctor: doctor_id,
     date: "",
   };
   const handleDept = async (value) => {
@@ -124,10 +129,8 @@ function Appointment() {
                               >
                                 <option disabled value="" hidden>Select Doctor</option>
                                 {doctors && doctors.map((doc) => (
-                                  <option value={doc.user.id} key={doc.id}>{doc.user.name}</option>
-
+                                  <option value={doc.user.id} key={doc.user.id}>{doc.user.name}</option>
                                 ))}
-
                               </Field>
                             )}
                           </div>

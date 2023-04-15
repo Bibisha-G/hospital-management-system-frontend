@@ -37,7 +37,7 @@ function PatientProfileCompletion() {
     setUploadStatus(intialUploadState);
     if (imageData !== null) {
       //! REMOVE previously updated file from cloud.
-      console.log("IM HERERERERRE", imageData);
+       
       setImageData(null);
     }
   };
@@ -100,7 +100,7 @@ function PatientProfileCompletion() {
   });
 
   const handleSubmit = async (values) => {
-    console.log(values);
+     
     setUploadStatus(intialUploadState);
     //? upload hasnt begin yet.
     try {
@@ -109,7 +109,7 @@ function PatientProfileCompletion() {
         toggleUploadLoading((state) => !state);
         //? toggle the loading for upload to cloudinary.
         const mediaUploadResponse = await uploadMedia(files[0]);
-        console.log(mediaUploadResponse);
+         
         toggleUploadLoading((state) => !state);
         //? adter response is received. toggle the loading.
         if (mediaUploadResponse.status === 200) {
@@ -125,7 +125,7 @@ function PatientProfileCompletion() {
           const response = await updateProfile(
             mutateFormValues(values, mediaUploadResponse.url)
           ).unwrap();
-          console.log(response);
+           
           dispatch(setProfile(response));
           //? call the api with form values and upload response.
           SuccessToast(response.message);

@@ -7,12 +7,10 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import RequireAuth from "..//navigation/RequireAuth";
 import BaseUser from "../navigation/BaseUser";
 import AuthNav from "../navigation/AuthNav";
-import RequireAdmin from "../navigation/RequireAdmin";
 import RootLayout from "../navigation/RootLayout";
 import LoginPage from "../features/auth/LoginPage";
 import RegisterPagePatient from "../features/auth/PatientRegistration/RegisterPagePatient";
 import RegisterPageDoctor from "../features/auth/DoctorRegistration/RegisterPageDoctor";
-import PatientProfileCompletion from "../pages/Profiles/PatientProfileCompletion";
 import PatientUser from "../navigation/PatientUser";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import ProfileCompletion from "../pages/Profiles/ProfileCompletion";
@@ -24,7 +22,6 @@ import Cancel from "../features/payments/Cancel";
 import PaymentAccess from "../features/payments/PaymentAccess";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js/pure";
-import ProfileProtection from "../navigation/ProfileProtection";
 const stripe_key = "pk_test_51Mwd0LE8c6uPwh6RhXAUdyjtOg1ZXX1A7nTRkGWOkpQKuwnV5oxHyjoDpbtTBtlroGDovwX9gtPybkx93r4d2Nfy00rwFHv6NI";
 const stripePromise = loadStripe(stripe_key);
 
@@ -92,7 +89,7 @@ const Router = createBrowserRouter([
               },
               {
                 path: "complete_profile",
-                element: <ProfileProtection><ProfileCompletion /></ProfileProtection>,
+                element: <ProfileCompletion />,
               },
               {
                 path: "payment",

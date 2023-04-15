@@ -1,56 +1,83 @@
-.doctor {
-    background-color: #fff;
-    text-align: center;
-    padding: 35px 40px 50px;
-    border-radius: 20px;
-    transition: all .5s;
-    z-index: 1;
-    position: relative;
-}
-
-.doctor-img .doctor-img:before {
-    content: "";
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    transition: all .5s;
-    opacity: .2;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-}
-
-.doctor-img img {
-    -webkit-mask-image: url(../../assets/download2323.png);
-    mask-image: url(../../assets/download2323.png);
-    -webkit-mask-position: center center;
-    mask-position: center center;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-size: 100%;
-    mask-size: 100%;
-}
-
-.doctor-info {
-    margin-bottom: 25px;
+.container {
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 2rem;
+  }
+  
+  .doctor {
     display: flex;
-    flex: 1;
+    margin-bottom: 2rem;
+  }
+  
+  .doctor-img img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 2rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .doctor-info {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-}
-
-.doctor-info-comntent {
-    margin-bottom: 25px;
-}
-
-.appointment {
-    padding: 20px 30px;
-    background: blue;
+    flex: 1;
+  }
+  
+  .title {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  
+  .text-secondary {
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+  }
+  
+  .doctor-info-comntent {
+    margin-bottom: 1.5rem;
+  }
+  
+  .doctor-intro {
+    margin-bottom: 2rem;
+  }
+  
+  .reviews h2 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .review {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+  }
+  
+  .review p {
+    margin: 0;
+  }
+  
+  .review-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 0.5rem;
+  }
+  .appointment {
     display: inline-block;
-    border-radius: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background-color: #007bff;
+    color: #fff;
     text-decoration: none;
-    color: white
-}
+  }
+  
+  .appointment:hover {
+    background-color: #0069d9;
+  }
+  

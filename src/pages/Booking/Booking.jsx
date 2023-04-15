@@ -7,7 +7,9 @@ import { Link, useLocation } from 'react-router-dom';
 function Booking() {
     const location = useLocation()
     const breadcrumbs = location.pathname.split('/')
-
+    const dept_id = location.state?.dept_id || ""
+    const doctor_id = location.state?.doctor_id || ""
+    console.log(dept_id,doctor_id);
     return (
         <div>
             <div className="banner-wraper">
@@ -42,7 +44,8 @@ function Booking() {
                 </div>
             </div>
             <div className='margn'></div>
-            <Appointment />
+
+            <Appointment dept_id={dept_id} doctor_id={doctor_id}/>
         </div>
     )
 }

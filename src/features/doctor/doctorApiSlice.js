@@ -16,11 +16,26 @@ export const doctorApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getDoctor: builder.query({
-      query: ({ id }) => {
+      query: (id) => {
         console.log(id);
         return {
           url: `/doctors/${id}/`,
           method: "GET",
+        };
+      },
+      transformErrorResponse: (response) => ({
+        status: response.status,
+        error: response.error,
+        message: response.data?.message,
+      }),
+    }),
+    setAvailability: builder.query({
+      query: (props) => {
+        const {id,...update} = props
+        return {
+          url: `doctors/${id}/set_availability/`,
+          method: "POST",
+          body: update
         };
       },
       transformErrorResponse: (response) => ({
