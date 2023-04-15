@@ -5,13 +5,20 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../features/auth/authSlice";
 import { API_URL } from "../../Config/Config";
 import CheckoutModal from "./CheckoutModal";
+import { useGetAvailabilityQuery } from "../../features/doctor/doctorApiSlice";
 
-const DoctorAvailability = ({ availability, doctor }) => {
+const DoctorAvailability = ({ doctor }) => {
   const user = useSelector(selectUser);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const [selectAppointmentType, setSelectAppointmentType] = useState(null);
   const [modalShow, setModalShow] = React.useState(false);
+
+  const { data: availability, isLoading } = useGetAvailabilityQuery(doctor?.id);
+
+  if (isLoading) {
+    return "Loading...";
+  }
 
   const handleDateSelection = (date) => {
     setSelectedDate(date);

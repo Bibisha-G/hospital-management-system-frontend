@@ -17,14 +17,15 @@ import ProfileCompletion from "../pages/Profiles/ProfileCompletion";
 import DoctorDetails from "../pages/DoctorDetails/DoctorDetails";
 import DoctorAvailibilityContainer from "../pages/Profiles/DoctorAvailabilityContainer";
 import ProfileUpdation from "../pages/Profiles/ProfileUpdation";
-import Checkout from "../features/payments/Checkout";
 import Success from "../features/payments/Success";
 import Cancel from "../features/payments/Cancel";
 import PaymentAccess from "../features/payments/PaymentAccess";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js/pure";
+import PatientAppointments from "../pages/Dashboard/PatientAppointments";
 
-const stripe_key = "pk_test_51Mwd0LE8c6uPwh6RhXAUdyjtOg1ZXX1A7nTRkGWOkpQKuwnV5oxHyjoDpbtTBtlroGDovwX9gtPybkx93r4d2Nfy00rwFHv6NI";
+const stripe_key =
+  "pk_test_51Mwd0LE8c6uPwh6RhXAUdyjtOg1ZXX1A7nTRkGWOkpQKuwnV5oxHyjoDpbtTBtlroGDovwX9gtPybkx93r4d2Nfy00rwFHv6NI";
 const stripePromise = loadStripe(stripe_key);
 
 const Router = createBrowserRouter([
@@ -94,24 +95,27 @@ const Router = createBrowserRouter([
                 element: <ProfileCompletion />,
               },
               {
-                path: 'update',
-                element: <ProfileUpdation/>
+                path: "update",
+                element: <ProfileUpdation />,
               },
               {
-                path: "payment",
-                element: <Elements stripe={stripePromise}>
-                  <PaymentAccess /></Elements>,
+                path: "appointments",
+                element: (
+                  <Elements stripe={stripePromise}>
+                    <PaymentAccess />
+                  </Elements>
+                ),
                 children: [
                   {
-                    path: "checkout",
-                    element: <Checkout />,
+                    path: "",
+                    element: <PatientAppointments />,
                   },
                   {
-                    path: "checkout/success",
+                    path: "success",
                     element: <Success />,
                   },
                   {
-                    path: "checkout/failed",
+                    path: "failed",
                     element: <Cancel />,
                   },
                 ],
