@@ -1,13 +1,11 @@
 import { API_URL } from "../../Config/Config";
 
-const Checkout = () => {
+const Checkout = ({ appointment, price }) => {
   return (
     <>
       <div className="container">
-        <h1>Checkout</h1>
-        <img src="https://i.imgur.com/EHyR2nP.png" className="image"></img>
         <h2>Price</h2>
-        <h3>25$</h3>
+        <h3>{price}</h3>
         <form
           action={`${API_URL}/payment/create-checkout-session/`}
           method="POST"
