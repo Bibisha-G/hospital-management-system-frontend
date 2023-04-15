@@ -19,6 +19,7 @@ import { element } from "prop-types";
 import DoctorProfileCompletion from "../pages/Profiles/DoctorProfileCompletion";
 import ProfileCompletion from "../pages/Profiles/ProfileCompletion";
 import DoctorDetails from "../pages/DoctorDetails/DoctorDetails";
+import DoctorAvailibilityContainer from "../pages/Profiles/DoctorAvailabilityContainer";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -84,6 +85,10 @@ const Router = createBrowserRouter([
               {
                 path: "complete_profile",
                 element: <ProfileCompletion />,
+              },
+              {
+                path: "setup_availibility",
+                element: <DoctorAvailibilityContainer />,
               },
             ],
           },

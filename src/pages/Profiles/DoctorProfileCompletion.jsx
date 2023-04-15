@@ -84,9 +84,12 @@ function DoctorProfileCompletion({ departments }) {
   );
   const initialValues = {
     age: "",
+    experience: "",
     specialization: "",
     is_private: false,
     info: "",
+    qualifications: "",
+    treatments: "",
     department: "",
   };
   const mutateFormValues = (formValues, mediaUrl) => ({
@@ -185,7 +188,7 @@ function DoctorProfileCompletion({ departments }) {
                       {AdvDropzone}
                     </Form.Group>
                     <Container className="w-100 p-0">
-                      <Row>
+                      <Row id="age_experience">
                         <Col>
                           <Form.Group className="mb-3" controlId="formBasicAge">
                             <InputGroup>
@@ -207,6 +210,81 @@ function DoctorProfileCompletion({ departments }) {
                               </Form.Control.Feedback>
                             </InputGroup>
                           </Form.Group>
+                        </Col>
+                        <Col>
+                          <Form.Group className="mb-3" controlId="formBasicAge">
+                            <InputGroup>
+                              <Form.Control
+                                type="number"
+                                required
+                                placeholder="Experience"
+                                className="py-4 field-color rounded-0"
+                                name="experience"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.experience}
+                                disabled={uploadLoading}
+                                isInvalid={
+                                  touched.experience && !!errors.experience
+                                }
+                                isValid={
+                                  touched.experience && !errors.experience
+                                }
+                              />
+                              <Form.Control.Feedback type="invalid">
+                                {errors.experience}
+                              </Form.Control.Feedback>
+                            </InputGroup>
+                          </Form.Group>
+                        </Col>
+                      </Row>
+                      <Row className="pt-4" id="department">
+                        <Col>
+                          <p className="text-muted">Select your department</p>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="formBasicDepartment"
+                          >
+                            <InputGroup>
+                              <Form.Select
+                                required
+                                className="py-4 field-color rounded-0 form-select-md mt-2"
+                                name="department"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.department}
+                                isInvalid={
+                                  touched.department && !!errors.department
+                                }
+                                isValid={
+                                  touched.department && !errors.department
+                                }
+                                disabled={uploadLoading}
+                              >
+                                <option disabled value="" hidden>
+                                  Department
+                                </option>
+                                {departments &&
+                                  departments.map((department) => (
+                                    <option
+                                      value={department.id}
+                                      key={department.id}
+                                    >
+                                      {department.name}
+                                    </option>
+                                  ))}
+                              </Form.Select>
+                              <Form.Control.Feedback type="invalid">
+                                {errors.department}
+                              </Form.Control.Feedback>
+                            </InputGroup>
+                          </Form.Group>
+                        </Col>
+                      </Row>
+                      <hr />
+                      <Row id="special_qual_treat" className="mt-5">
+                        <p className="text-muted">Professional Information</p>
+                        <Col>
                           <Form.Group
                             className="mb-3"
                             controlId="formBasicWeight"
@@ -251,49 +329,97 @@ function DoctorProfileCompletion({ departments }) {
                               /75
                             </span>
                           </Form.Group>
-                        </Col>
-                      </Row>
-                      <Row className="pt-4">
-                        <Col>
                           <Form.Group
                             className="mb-3"
-                            controlId="formBasicDepartment"
+                            controlId="formBasicWeight"
                           >
                             <InputGroup>
-                              <Form.Select
+                              <Form.Control
+                                type="text"
                                 required
-                                className="py-4 field-color rounded-0 form-select-md"
-                                name="department"
+                                placeholder="Your qualifications"
+                                className="py-4 field-color rounded-0"
+                                name="qualifications"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.department}
+                                value={values.qualifications}
+                                disabled={uploadLoading}
                                 isInvalid={
-                                  touched.department && !!errors.department
+                                  touched.qualifications &&
+                                  !!errors.qualifications
                                 }
                                 isValid={
-                                  touched.department && !errors.department
+                                  touched.qualifications &&
+                                  !errors.qualifications
                                 }
-                                disabled={uploadLoading}
-                              >
-                                <option disabled value="" hidden>Department</option>
-                                {departments &&
-                                  departments.map((department) => (
-                                    <option
-                                      value={department.id}
-                                      key={department.id}
-                                    >
-                                      {department.name}
-                                    </option>
-                                  ))}
-                              </Form.Select>
+                              />
                               <Form.Control.Feedback type="invalid">
-                                {errors.department}
+                                {errors.qualifications}
                               </Form.Control.Feedback>
                             </InputGroup>
+                            <span
+                              className="text-muted d-flex justify-content-end"
+                              style={{ fontSize: "12px" }}
+                            >
+                              <span
+                                className={
+                                  values.qualifications?.length > 75
+                                    ? "text-danger"
+                                    : undefined
+                                }
+                              >
+                                {values.qualifications?.length}
+                              </span>
+                              /75
+                            </span>
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="formBasicWeight"
+                          >
+                            <InputGroup>
+                              <Form.Control
+                                type="text"
+                                required
+                                placeholder="Treatments your offer"
+                                className="py-4 field-color rounded-0"
+                                name="treatments"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.treatments}
+                                disabled={uploadLoading}
+                                isInvalid={
+                                  touched.treatments && !!errors.treatments
+                                }
+                                isValid={
+                                  touched.treatments && !errors.treatments
+                                }
+                              />
+                              <Form.Control.Feedback type="invalid">
+                                {errors.treatments}
+                              </Form.Control.Feedback>
+                            </InputGroup>
+                            <span
+                              className="text-muted d-flex justify-content-end"
+                              style={{ fontSize: "12px" }}
+                            >
+                              <span
+                                className={
+                                  values.treatments?.length > 120
+                                    ? "text-danger"
+                                    : undefined
+                                }
+                              >
+                                {values.treatments?.length}
+                              </span>
+                              /120
+                            </span>
                           </Form.Group>
                         </Col>
                       </Row>
+                      <hr />
                       <Row className="pt-4">
+                        <p className="text-muted">General Information</p>
                         <Col>
                           <span className="text-muted">
                             Provide a brief introduction about yourself. This
