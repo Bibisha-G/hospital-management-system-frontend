@@ -115,9 +115,13 @@ function UserNavBar() {
                   id="basic-nav-dropdown"
                   align="end"
                 >
+                 
                   <button onClick={handleLogout} type="button">
                     Logout
                   </button>
+                  <Link to={"update"} className="nav-link">
+                    Update Profile
+                  </Link>
                 </NavDropdown>
               </Nav>
             </div>

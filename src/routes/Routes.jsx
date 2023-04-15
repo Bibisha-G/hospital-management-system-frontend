@@ -16,12 +16,14 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import ProfileCompletion from "../pages/Profiles/ProfileCompletion";
 import DoctorDetails from "../pages/DoctorDetails/DoctorDetails";
 import DoctorAvailibilityContainer from "../pages/Profiles/DoctorAvailabilityContainer";
+import ProfileUpdation from "../pages/Profiles/ProfileUpdation";
 import Checkout from "../features/payments/Checkout";
 import Success from "../features/payments/Success";
 import Cancel from "../features/payments/Cancel";
 import PaymentAccess from "../features/payments/PaymentAccess";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js/pure";
+
 const stripe_key = "pk_test_51Mwd0LE8c6uPwh6RhXAUdyjtOg1ZXX1A7nTRkGWOkpQKuwnV5oxHyjoDpbtTBtlroGDovwX9gtPybkx93r4d2Nfy00rwFHv6NI";
 const stripePromise = loadStripe(stripe_key);
 
@@ -90,6 +92,10 @@ const Router = createBrowserRouter([
               {
                 path: "complete_profile",
                 element: <ProfileCompletion />,
+              },
+              {
+                path: 'update',
+                element: <ProfileUpdation/>
               },
               {
                 path: "payment",
