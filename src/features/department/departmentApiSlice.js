@@ -15,6 +15,19 @@ export const authApiSlice = apiSlice.injectEndpoints({
         message: response.data?.message,
       }),
     }),
+    getDepartmentInfo: builder.query({
+      query: (id) => {
+        return {
+          url: `hospital/departments/${id}/`,
+          method: "GET",
+        };
+      },
+      transformErrorResponse: (response) => ({
+        status: response.status,
+        error: response.error,
+        message: response.data?.message,
+      }),
+    }),
     getDeptDoctors: builder.query({
       query: (id) => {
         return {
@@ -36,4 +49,5 @@ export const {
   useLazyGetDepartmentsQuery,
   useGetDeptDoctorsQuery,
   useLazyGetDeptDoctorsQuery,
+  useLazyGetDepartmentInfoQuery
 } = authApiSlice;

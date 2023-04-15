@@ -16,6 +16,8 @@ import PatientProfileCompletion from "../pages/Profiles/PatientProfileCompletion
 import PatientUser from "../navigation/PatientUser";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import ProfileCompletion from "../pages/Profiles/ProfileCompletion";
+import DoctorDetails from "../pages/DoctorDetails/DoctorDetails";
+import DoctorAvailibilityContainer from "../pages/Profiles/DoctorAvailabilityContainer";
 import Checkout from "../features/payments/Checkout";
 import Success from "../features/payments/Success";
 import Cancel from "../features/payments/Cancel";
@@ -85,6 +87,10 @@ const Router = createBrowserRouter([
                 element: <Team />,
               },
               {
+                path: "doctors/:id",
+                element: <DoctorDetails />,
+              },
+              {
                 path: "complete_profile",
                 element: <ProfileProtection><ProfileCompletion /></ProfileProtection>,
               },
@@ -106,6 +112,10 @@ const Router = createBrowserRouter([
                     element: <Cancel />,
                   },
                 ],
+              },
+              {
+                path: "setup_availibility",
+                element: <DoctorAvailibilityContainer />,
               },
             ],
           },
