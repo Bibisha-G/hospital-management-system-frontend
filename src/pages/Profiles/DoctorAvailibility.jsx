@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-
+import { selectProfile } from "../../features/auth/authSlice";
+import { useSelector } from "react-redux";
+import { useSetAvailabilityMutation } from "../../features/doctor/doctorApiSlice";
 function DoctorAvailability() {
+  const profile = useSelector(selectProfile)
+  const [makeAppointment, {isLoading}] = useSetAvailabilityMutation()
   const days = [
     "Monday",
     "Tuesday",
@@ -43,9 +47,10 @@ function DoctorAvailability() {
     setDaysOfWeek(updatedDays);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(daysOfWeek);
+    await makeAppointment({id:profile.id,body:daysOfWeek}).unwrap();
     // TODO: Send data to Django backend
   };
 

@@ -29,9 +29,9 @@ export const doctorApiSlice = apiSlice.injectEndpoints({
         message: response.data?.message,
       }),
     }),
-    setAvailability: builder.query({
+    setAvailability: builder.mutation({
       query: (props) => {
-        const {id,...update} = props
+        const {id,body:update} = props
         return {
           url: `doctors/${id}/set_availability/`,
           method: "POST",
@@ -47,4 +47,4 @@ export const doctorApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetDoctorsQuery, useGetDoctorQuery } = doctorApiSlice;
+export const { useGetDoctorsQuery, useGetDoctorQuery ,useSetAvailabilityMutation } = doctorApiSlice;
