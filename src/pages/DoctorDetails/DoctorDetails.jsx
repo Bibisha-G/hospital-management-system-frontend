@@ -45,11 +45,18 @@ function DoctorDetails() {
           </div>
         </div>
         <p>
-          {doctor.info ? doctor.info : "No Info Available"}
+          {doctor?.info ? doctor.info : "No Info Available"}
         </p>
-        <div>
-            <Link style={{ padding: '20px 30px', background: 'blue', display:'inline-block', borderRadius:'20px', textDecoration: 'none',color:'white'}} to={''}>Book</Link>
-
+        <div className="nav-link nav-link-buttons-margin">
+          <Link to={"/login"}>
+            <button type="button">
+              Login{" "}
+              <span>
+                {" "}
+                <IoIosArrowForward />{" "}
+              </span>
+            </button>
+          </Link>
         </div>
       </div>
     );
