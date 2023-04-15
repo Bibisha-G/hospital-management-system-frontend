@@ -18,6 +18,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import { element } from "prop-types";
 import DoctorProfileCompletion from "../pages/Profiles/DoctorProfileCompletion";
 import ProfileCompletion from "../pages/Profiles/ProfileCompletion";
+import DoctorDetails from "../pages/DoctorDetails/DoctorDetails";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -75,6 +76,10 @@ const Router = createBrowserRouter([
               {
                 path: "doctors",
                 element: <Team />,
+              },
+              {
+                path: "doctors/:id",
+                element: <DoctorDetails />,
               },
               {
                 path: "complete_profile",
