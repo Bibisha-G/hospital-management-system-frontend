@@ -19,7 +19,7 @@ import { selectProfile, selectUser, setProfile } from "../../features/auth/authS
 import { useDispatch, useSelector } from "react-redux";
 import DoctorProfileSchema from "../../validations/schemas/DoctorProfileSchema";
 
-function DoctorProfileCompletion({ departments }) {
+function DoctorProfileUpdation({ departments }) {
   const { intialUploadState, successUploadState, errorUploadState } =
     uploadStates;
   const user = useSelector(selectUser);
@@ -507,4 +507,4 @@ function DoctorProfileCompletion({ departments }) {
   );
 }
 
-export default DoctorProfileCompletion;
+export default DoctorProfileUpdation;
