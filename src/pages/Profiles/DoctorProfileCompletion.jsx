@@ -15,8 +15,8 @@ import uploadMedia from "../../utils/uploadMedia";
 import { ErrorToast, SuccessToast } from "../../components/Toasts/Toasts";
 import { useNavigate } from "react-router";
 import { useUpdateDoctorProfileMutation } from "../../features/auth/authApiSlice";
-import { selectUser } from "../../features/auth/authSlice";
-import { useSelector } from "react-redux";
+import { selectUser, setProfile } from "../../features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 import DoctorProfileSchema from "../../validations/schemas/DoctorProfileSchema";
 
 function DoctorProfileCompletion({ departments }) {
@@ -30,6 +30,8 @@ function DoctorProfileCompletion({ departments }) {
   const [uploadLoading, toggleUploadLoading] = useState();
   const [uploadStatus, setUploadStatus] = useState(intialUploadState);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const dropzoneCleanup = () => {
     setDropzoneErrors([]);
     setUploadStatus(intialUploadState);
@@ -120,6 +122,7 @@ function DoctorProfileCompletion({ departments }) {
           const response = await updateProfile(
             mutateFormValues(values, mediaUploadResponse.url)
           ).unwrap();
+          dispatch(setProfile(response));
           //? call the api with form values and upload response.
           SuccessToast(response.message);
           navigate("/dashboard");
