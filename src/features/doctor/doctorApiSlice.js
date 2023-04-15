@@ -16,7 +16,7 @@ export const doctorApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getDoctor: builder.query({
-      query: ({id}) => {
+      query: ({ id }) => {
         console.log(id);
         return {
           url: `/doctors/${id}/`,
@@ -32,7 +32,4 @@ export const doctorApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const {
-  useGetDoctorsQuery,
-  useGetDoctorQuery
-} = doctorApiSlice;
+export const { useGetDoctorsQuery, useGetDoctorQuery } = doctorApiSlice;
