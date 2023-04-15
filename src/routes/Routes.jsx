@@ -15,18 +15,16 @@ import RegisterPageDoctor from "../features/auth/DoctorRegistration/RegisterPage
 import PatientProfileCompletion from "../pages/Profiles/PatientProfileCompletion";
 import PatientUser from "../navigation/PatientUser";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import { element } from "prop-types";
 import ProfileCompletion from "../pages/Profiles/ProfileCompletion";
 import Checkout from "../features/payments/Checkout";
 import Success from "../features/payments/Success";
 import Cancel from "../features/payments/Cancel";
-// import { Elements } from "@stripe/react-stripe-js";
-// import { loadStripe } from "@stripe/stripe-js/pure";
-// import { REACT_APP_STRIPE_KEY } from "../Config/Config";
 import PaymentAccess from "../features/payments/PaymentAccess";
-
-// const stripe_key = REACT_APP_STRIPE_KEY;
-// const stripePromise = loadStripe(stripe_key);
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js/pure";
+import ProfileProtection from "../navigation/ProfileProtection";
+const stripe_key = "pk_test_51Mwd0LE8c6uPwh6RhXAUdyjtOg1ZXX1A7nTRkGWOkpQKuwnV5oxHyjoDpbtTBtlroGDovwX9gtPybkx93r4d2Nfy00rwFHv6NI";
+const stripePromise = loadStripe(stripe_key);
 
 const Router = createBrowserRouter([
   {
@@ -88,11 +86,12 @@ const Router = createBrowserRouter([
               },
               {
                 path: "complete_profile",
-                element: <ProfileCompletion />,
+                element: <ProfileProtection><ProfileCompletion /></ProfileProtection>,
               },
               {
                 path: "payment",
-                element: <PaymentAccess />,
+                element: <Elements stripe={stripePromise}>
+                  <PaymentAccess /></Elements>,
                 children: [
                   {
                     path: "checkout",
