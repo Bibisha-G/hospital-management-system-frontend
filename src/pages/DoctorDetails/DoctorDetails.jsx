@@ -29,7 +29,7 @@ function DoctorDetails() {
     <div className="container">
       <div className="doctor rounded-4 p-5">
         <div className="doctor-img">
-          <img src={doctor?.avatar_slug ?? member4} alt="Doctor" />
+          <img src={doctor?.avatar_slug === "" ? member4 : doctor?.avatar_slug} alt="Doctor" />
         </div>
         <div className="doctor-info">
           <div className="doctor-info-comntent">
