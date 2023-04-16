@@ -74,7 +74,7 @@ function UserNavBar() {
             <div className="align-nav">
               <Nav className="me-auto">
                 <Link to={"/dashboard"} className="nav-link">
-                  Home
+                  Dashboard
                 </Link>
                 {/* <NavDropdown title="Services" id="basic-nav-dropdown">
               <Link to={"/service"} className='dropdown-item'>Service</Link>
