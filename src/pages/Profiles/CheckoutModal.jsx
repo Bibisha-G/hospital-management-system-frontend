@@ -3,8 +3,9 @@ import { Modal, Button, Collapse } from "react-bootstrap";
 import moment from "moment";
 import { API_URL } from "../../Config/Config";
 
-const Checkout = ({ appointmentDetails, price }) => {
-  console.log(appointmentDetails, price);
+const Checkout = ({ appointmentDetails, appointmentDes, price }) => {
+  const date = appointmentDes.date.format("YYYY-MM-DD");
+  const appointmentValue = `Appointment with ${appointmentDes?.doctorName} on ${date}`;
   return (
     <>
       <div className="container">
@@ -32,7 +33,11 @@ const Checkout = ({ appointmentDetails, price }) => {
               action={`${API_URL}/payment/create-checkout-session/`}
               method="POST"
             >
-              <input type="hidden" name="product_name" value="test_product" />
+              <input
+                type="hidden"
+                name="product_name"
+                value={appointmentValue}
+              />
               <input type="hidden" name="price" value={price * 100} />
               <input
                 type="hidden"
@@ -68,7 +73,6 @@ function CheckoutModal({
   selectAppointmentType,
   ...props
 }) {
-  console.log(user);
   const [showCheckout, setShowCheckout] = useState(false);
 
   const handleConfirmClick = () => {
@@ -86,6 +90,12 @@ function CheckoutModal({
     appointment_date: selectedDate,
     appointment_time: selectedTimeSlot,
     appointment_type: selectAppointmentType,
+  };
+
+  const appointmentDes = {
+    doctorName: doctor?.user?.name,
+    patientName: user?.name,
+    date: selectedDate,
   };
 
   const price =
@@ -155,7 +165,11 @@ function CheckoutModal({
             <div>
               <p className="text-dark text-center">You will be charged for:</p>
             </div>
-            <Checkout price={price} appointmentDetails={appointmentDetails} />
+            <Checkout
+              price={price}
+              appointmentDetails={appointmentDetails}
+              appointmentDes={appointmentDes}
+            />
           </div>
         </Collapse>
       </Modal.Body>
