@@ -11,6 +11,7 @@ export const appointmentApiSlice = apiSlice.injectEndpoints({
           body: { ...body }
         };
       },
+      providesTags: ['Appointment'],
       transformErrorResponse: (response) => ({
         status: response.status,
         error: response.error,
@@ -25,6 +26,7 @@ export const appointmentApiSlice = apiSlice.injectEndpoints({
           method: "GET",
         };
       },
+      invalidatesTags: ['Appointment'],
       transformErrorResponse: (response) => ({
         status: response.status,
         error: response.error,
@@ -39,6 +41,7 @@ export const appointmentApiSlice = apiSlice.injectEndpoints({
           method: "GET",
         };
       },
+      invalidatesTags: ['Appointment'],
       transformErrorResponse: (response) => ({
         status: response.status,
         error: response.error,

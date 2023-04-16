@@ -13,7 +13,6 @@ function PatientAppointments(props) {
   if (isLoading) {
     return <Spinner />;
   }
-
   return (
     <Container className="p-5 mt-5">
       <h4 className="text-center">Your Appointments</h4>
@@ -31,9 +30,9 @@ function PatientAppointments(props) {
             appointments.length > 0 &&
             appointments.map((appointment) => (
               <tr key={appointment?.id}>
-                <td>{appointment?.doctor.name}</td>
+                <td>{appointment?.doctor_name}</td>
                 <td>{appointment?.date}</td>
-                <td>{appointment?.time_slot.name}</td>
+                <td><span>{appointment?.time_slot?.start_time}</span><span> - {appointment?.time_slot?.end_time}</span></td>
                 <td>{appointment?.appointment_charge}</td>
               </tr>
             ))}

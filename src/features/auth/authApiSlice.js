@@ -25,7 +25,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: { ...body },
       }),
-
+      invalidatesTags: ['Doctors'],
       transformResponse: (response) => response,
       transformErrorResponse: (response) => {
         const errors = response.data;

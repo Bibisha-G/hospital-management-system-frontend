@@ -6,9 +6,10 @@ import { selectUser } from "../../features/auth/authSlice";
 import { API_URL } from "../../Config/Config";
 import CheckoutModal from "./CheckoutModal";
 import { useGetAvailabilityQuery } from "../../features/doctor/doctorApiSlice";
-
+import { selectUserType } from "../../features/auth/authSlice";
 const SelectSlot = ({ doctor }) => {
   const user = useSelector(selectUser);
+  const userType = useSelector(selectUserType)
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const [selectAppointmentType, setSelectAppointmentType] = useState(null);
@@ -74,9 +75,10 @@ const SelectSlot = ({ doctor }) => {
     }
     return buttons;
   };
-
+  console.log(user.profile_id,doctor.id);
   return (
     <>
+    {user.profile_id === doctor.id || userType === 'Patient' ?(
       <div>
         <div>
           <p className="text-dark">Select a date:</p>
@@ -221,6 +223,9 @@ const SelectSlot = ({ doctor }) => {
           selectedTimeSlot={selectedTimeSlot}
         />
       </div>
+      ) : (
+        <div className="text-center">Only Patients can make appointments</div>
+      )}
     </>
   );
 };

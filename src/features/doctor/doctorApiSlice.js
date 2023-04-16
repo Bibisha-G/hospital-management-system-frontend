@@ -9,6 +9,7 @@ export const doctorApiSlice = apiSlice.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ['Doctors'],
       transformErrorResponse: (response) => ({
         status: response.status,
         error: response.error,
@@ -48,6 +49,7 @@ export const doctorApiSlice = apiSlice.injectEndpoints({
         return {
           url: `doctors/${id}/get_availability/`,
           method: "GET",
+          
         };
       },
       transformErrorResponse: (response) => ({
