@@ -75,144 +75,154 @@ const DoctorAvailability = ({ doctor }) => {
 
   return (
     <>
-      <div>
-        <p className="text-dark">Select a date:</p>
-        <div className="d-flex overflow-auto">{renderDateButtons()}</div>
+      {user.is_patient ? (
+        <div>
+          <div>
+            <p className="text-dark">Select a date:</p>
+            <div className="d-flex overflow-auto">{renderDateButtons()}</div>
 
-        {selectedDate ? (
-          <div className="mt-5">
-            <p>Available time slots:</p>
-            <div className="d-flex flex-wrap gap-2">
-              {availability.map((day) => {
-                if (
-                  day.day === moment(selectedDate).day() &&
-                  day.time_slots.length > 0
-                ) {
-                  return day.time_slots.map((timeSlot) => (
-                    <Card
-                      key={timeSlot.id}
-                      style={
-                        timeSlot === selectedTimeSlot
-                          ? { backgroundColor: "#1e81b0", color: "white" }
-                          : { backgroundColor: "white" }
-                      }
-                      onClick={() => handleTimeSlotSelection(timeSlot)}
-                    >
-                      <Card.Body>
-                        <Card.Title>
-                          {moment(timeSlot.start_time, "HH:mm:ss").format(
-                            "h:mm A"
-                          )}{" "}
-                          -{" "}
-                          {moment(timeSlot.end_time, "HH:mm:ss").format(
-                            "h:mm A"
-                          )}
-                        </Card.Title>
-                        <Card.Text
-                          className={`${
+            {selectedDate ? (
+              <div className="mt-5">
+                <p>Available time slots:</p>
+                <div className="d-flex flex-wrap gap-2">
+                  {availability.map((day) => {
+                    if (
+                      day.day === moment(selectedDate).day() &&
+                      day.time_slots.length > 0
+                    ) {
+                      return day.time_slots.map((timeSlot) => (
+                        <Card
+                          key={timeSlot.id}
+                          style={
                             timeSlot === selectedTimeSlot
-                              ? "text-white"
-                              : "text-dark"
-                          }`}
+                              ? { backgroundColor: "#1e81b0", color: "white" }
+                              : { backgroundColor: "white" }
+                          }
+                          onClick={() => handleTimeSlotSelection(timeSlot)}
                         >
-                          Online Price: {timeSlot.online_appointment_charge} |
-                          Physical Price: {timeSlot.physical_appointment_charge}
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
-                  ));
-                }
-              })}
-            </div>
+                          <Card.Body>
+                            <Card.Title>
+                              {moment(timeSlot.start_time, "HH:mm:ss").format(
+                                "h:mm A"
+                              )}{" "}
+                              -{" "}
+                              {moment(timeSlot.end_time, "HH:mm:ss").format(
+                                "h:mm A"
+                              )}
+                            </Card.Title>
+                            <Card.Text
+                              className={`${
+                                timeSlot === selectedTimeSlot
+                                  ? "text-white"
+                                  : "text-dark"
+                              }`}
+                            >
+                              Online Price: {timeSlot.online_appointment_charge}{" "}
+                              | Physical Price:{" "}
+                              {timeSlot.physical_appointment_charge}
+                            </Card.Text>
+                          </Card.Body>
+                        </Card>
+                      ));
+                    }
+                  })}
+                </div>
+              </div>
+            ) : (
+              <p className="mt-5">
+                Appointments timeslots will show when you select a date
+              </p>
+            )}
+            {selectedTimeSlot && (
+              <div className="d-flex gap-2">
+                <Button
+                  type="submit"
+                  disabled={!selectedDate || !selectedTimeSlot}
+                  onClick={() => setSelectAppointmentType("online")}
+                  className="mt-5 rounded-2 text-black-50 shadow"
+                  style={
+                    selectAppointmentType === "online"
+                      ? {
+                          backgroundColor: "#1e81b0",
+                          color: "white",
+                          border: "solid 1px #1e81b0",
+                        }
+                      : {
+                          backgroundColor: "white",
+                          border: "solid 1px #1e81b0",
+                        }
+                  }
+                >
+                  <span
+                    className={
+                      selectAppointmentType === "online"
+                        ? "text-white"
+                        : "text-black"
+                    }
+                  >
+                    Online Appointment
+                  </span>
+                </Button>
+                <Button
+                  type="submit"
+                  disabled={!selectedDate || !selectedTimeSlot}
+                  onClick={() => setSelectAppointmentType("physical")}
+                  className="mt-5 rounded-2 text-black-50 shadow"
+                  style={
+                    selectAppointmentType === "physical"
+                      ? {
+                          backgroundColor: "#1e81b0",
+                          color: "white",
+                          border: "solid 1px #1e81b0",
+                        }
+                      : {
+                          backgroundColor: "white",
+                          border: "solid 1px #1e81b0",
+                        }
+                  }
+                >
+                  <span
+                    className={
+                      selectAppointmentType === "physical"
+                        ? "text-white"
+                        : "text-black"
+                    }
+                  >
+                    Physical Appointment
+                  </span>
+                </Button>
+              </div>
+            )}
           </div>
-        ) : (
-          <p className="mt-5">
-            Appointments timeslots will show when you select a date
-          </p>
-        )}
-        {selectedTimeSlot && (
-          <div className="d-flex gap-2">
+          <div className="d-flex justify-content-end">
             <Button
               type="submit"
-              disabled={!selectedDate || !selectedTimeSlot}
-              onClick={() => setSelectAppointmentType("online")}
-              className="mt-5 rounded-2 text-black-50 shadow"
-              style={
-                selectAppointmentType === "online"
-                  ? {
-                      backgroundColor: "#1e81b0",
-                      color: "white",
-                      border: "solid 1px #1e81b0",
-                    }
-                  : {
-                      backgroundColor: "white",
-                      border: "solid 1px #1e81b0",
-                    }
+              disabled={
+                !selectedDate || !selectedTimeSlot || !selectAppointmentType
               }
+              onClick={() => setModalShow(true)}
+              className="mt-5 rounded-0 text-black-50 shadow"
+              style={{
+                backgroundColor: "#1e81b0",
+                border: "solid 1px #1e81b0",
+              }}
             >
-              <span
-                className={
-                  selectAppointmentType === "online"
-                    ? "text-white"
-                    : "text-black"
-                }
-              >
-                Online Appointment
-              </span>
-            </Button>
-            <Button
-              type="submit"
-              disabled={!selectedDate || !selectedTimeSlot}
-              onClick={() => setSelectAppointmentType("physical")}
-              className="mt-5 rounded-2 text-black-50 shadow"
-              style={
-                selectAppointmentType === "physical"
-                  ? {
-                      backgroundColor: "#1e81b0",
-                      color: "white",
-                      border: "solid 1px #1e81b0",
-                    }
-                  : {
-                      backgroundColor: "white",
-                      border: "solid 1px #1e81b0",
-                    }
-              }
-            >
-              <span
-                className={
-                  selectAppointmentType === "physical"
-                    ? "text-white"
-                    : "text-black"
-                }
-              >
-                Physical Appointment
-              </span>
+              <span className="text-light">Book Appointment</span>
             </Button>
           </div>
-        )}
-      </div>
-      <div className="d-flex justify-content-end">
-        <Button
-          type="submit"
-          disabled={
-            !selectedDate || !selectedTimeSlot || !selectAppointmentType
-          }
-          onClick={() => setModalShow(true)}
-          className="mt-5 rounded-0 text-black-50 shadow"
-          style={{ backgroundColor: "#1e81b0", border: "solid 1px #1e81b0" }}
-        >
-          <span className="text-light">Book Appointment</span>
-        </Button>
-      </div>
-      <CheckoutModal
-        show={modalShow}
-        doctor={doctor}
-        user={user}
-        selectAppointmentType={selectAppointmentType}
-        onHide={() => setModalShow(false)}
-        selectedDate={selectedDate}
-        selectedTimeSlot={selectedTimeSlot}
-      />
+          <CheckoutModal
+            show={modalShow}
+            doctor={doctor}
+            user={user}
+            selectAppointmentType={selectAppointmentType}
+            onHide={() => setModalShow(false)}
+            selectedDate={selectedDate}
+            selectedTimeSlot={selectedTimeSlot}
+          />
+        </div>
+      ) : (
+        <div className="text-center">Only Patients can make appointments</div>
+      )}
     </>
   );
 };

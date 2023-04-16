@@ -16,9 +16,9 @@ function PatientAppointments(props) {
   }, []);
 
   return (
-    <Container>
-      <h2>Your Appointments</h2>
-      <Table striped bordered hover>
+    <Container className="p-5 mt-5">
+      <h4 className="text-center">Your Appointments</h4>
+      <Table striped bordered hover className="mt-5 p-5">
         <thead>
           <tr>
             <th>Doctor</th>
