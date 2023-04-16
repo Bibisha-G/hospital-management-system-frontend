@@ -23,6 +23,7 @@ export const doctorApiSlice = apiSlice.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ['Doctor'],
       transformErrorResponse: (response) => ({
         status: response.status,
         error: response.error,
