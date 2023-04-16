@@ -91,9 +91,14 @@ function UserNavBar() {
                       Appointments
                     </Link>
                   </> :
+                  <>
                   <Link to={"/dashboard/doctor_appointments"} className="nav-link">
                     Appointments
                   </Link>
+                  <Link to={"/dashboard/setup_availability"} className="nav-link">
+                    Availability
+                  </Link>
+                  </>
                 }
               </Nav>
               <Nav className="justify-content-center">
