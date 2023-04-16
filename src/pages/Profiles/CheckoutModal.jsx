@@ -81,8 +81,8 @@ function CheckoutModal({
   };
 
   const appointmentDetails = {
-    doctor_id: doctor?.user?.id,
-    patient_id: user?.id,
+    doctor_id: doctor?.id,
+    patient_id: user?.profile_id,
     appointment_date: selectedDate,
     appointment_time: selectedTimeSlot,
     appointment_type: selectAppointmentType,
