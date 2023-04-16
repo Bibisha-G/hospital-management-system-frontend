@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Container, Spinner, Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { useGetPatientApointmentsQuery } from "../../features/appointment/appointmentApiSlice";
+import { selectProfile } from "../../features/auth/authSlice";
 
 function PatientAppointments(props) {
-  const [appointments, setAppointments] = useState([]);
+  const profile = useSelector(selectProfile);
+  const { data: appointments, isLoading } = useGetPatientApointmentsQuery(
+    profile?.id
+  );
 
-  useEffect(() => {
-    // make API call to retrieve appointments for current patient
-    // and update the state with the results
-    const fetchAppointments = async () => {
-      const response = await fetch("/api/appointments/");
-      const data = await response.json();
-      setAppointments(data);
-    };
-    fetchAppointments();
-  }, []);
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <Container className="p-5 mt-5">
@@ -28,14 +27,16 @@ function PatientAppointments(props) {
           </tr>
         </thead>
         <tbody>
-          {appointments.map((appointment) => (
-            <tr key={appointment.id}>
-              <td>{appointment.doctor.name}</td>
-              <td>{appointment.date}</td>
-              <td>{appointment.time_slot.name}</td>
-              <td>{appointment.appointment_charge}</td>
-            </tr>
-          ))}
+          {appointments &&
+            appointments.length > 0 &&
+            appointments.map((appointment) => (
+              <tr key={appointment?.id}>
+                <td>{appointment?.doctor.name}</td>
+                <td>{appointment?.date}</td>
+                <td>{appointment?.time_slot.name}</td>
+                <td>{appointment?.appointment_charge}</td>
+              </tr>
+            ))}
         </tbody>
       </Table>
     </Container>

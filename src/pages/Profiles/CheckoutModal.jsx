@@ -4,7 +4,7 @@ import moment from "moment";
 import { API_URL } from "../../Config/Config";
 
 const Checkout = ({ appointmentDetails, price }) => {
-  console.log(appointmentDetails,price);
+  console.log(appointmentDetails, price);
   return (
     <>
       <div className="container">
@@ -68,7 +68,7 @@ function CheckoutModal({
   selectAppointmentType,
   ...props
 }) {
-  console.log("Hello");
+  console.log(user);
   const [showCheckout, setShowCheckout] = useState(false);
 
   const handleConfirmClick = () => {
@@ -81,7 +81,7 @@ function CheckoutModal({
   };
 
   const appointmentDetails = {
-    doctor_id: doctor.user?.id,
+    doctor_id: doctor?.user?.id,
     patient_id: user?.id,
     appointment_date: selectedDate,
     appointment_time: selectedTimeSlot,
