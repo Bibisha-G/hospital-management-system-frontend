@@ -8,7 +8,7 @@ export const appointmentApiSlice = apiSlice.injectEndpoints({
         return {
           url: `hospital/appointments/`,
           method: "POST",
-          body: { ...body },
+          body: { ...body }
         };
       },
       transformErrorResponse: (response) => ({
@@ -17,7 +17,39 @@ export const appointmentApiSlice = apiSlice.injectEndpoints({
         message: response.data?.message,
       }),
     }),
-  }),
+    getDoctorApointments: builder.query({
+      query: (id) => {
+        console.log(id);
+        return {
+          url: `hospital/appointments/get_appointments_by_doctor/?doctor_id=${id}`,
+          method: "GET",
+        };
+      },
+      transformErrorResponse: (response) => ({
+        status: response.status,
+        error: response.error,
+        message: response.data?.message,
+      }),
+    }),
+    getPatientApointments: builder.query({
+      query: (id) => {
+        console.log(id);
+        return {
+          url: `hospital/appointments/get_appointments_by_patient/?patient_id=${id}`,
+          method: "GET",
+        };
+      },
+      transformErrorResponse: (response) => ({
+        status: response.status,
+        error: response.error,
+        message: response.data?.message,
+      }),
+    })
+  })
 });
 
-export const { useCreateApointmentMutation } = appointmentApiSlice;
+export const {
+  useCreateApointmentMutation,
+  useGetDoctorApointmentsQuery,
+  useGetPatientApointmentsQuery
+} = appointmentApiSlice;

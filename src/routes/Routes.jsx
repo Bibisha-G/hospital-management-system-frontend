@@ -23,6 +23,7 @@ import PaymentAccess from "../features/payments/PaymentAccess";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js/pure";
 import PatientAppointments from "../pages/Dashboard/PatientAppointments";
+import DoctorAppointments from "../pages/Profiles/DoctorAppointments";
 
 const stripe_key =
   "pk_test_51Mwd0LE8c6uPwh6RhXAUdyjtOg1ZXX1A7nTRkGWOkpQKuwnV5oxHyjoDpbtTBtlroGDovwX9gtPybkx93r4d2Nfy00rwFHv6NI";
@@ -89,6 +90,10 @@ const Router = createBrowserRouter([
               {
                 path: "doctors/:id",
                 element: <DoctorDetails />,
+              },
+              {
+                path: 'doctor_appointments',
+                element: <DoctorAppointments/>
               },
               {
                 path: "complete_profile",

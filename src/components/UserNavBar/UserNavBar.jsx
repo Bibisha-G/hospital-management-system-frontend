@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import "./UserNavBar.css";
-import { selectTypeQuery } from "../../features/auth/authSlice";
+import { selectTypeQuery, selectUserType } from "../../features/auth/authSlice";
 import { useSelector } from "react-redux";
 import { logOut } from "../../features/auth/authSlice";
 import { useDispatch } from "react-redux";
@@ -20,6 +20,7 @@ import { selectProfile } from "../../features/auth/authSlice";
 function UserNavBar() {
   const [navbarOpacity, setNavbarOpacity] = useState(1);
   const userType = useSelector(selectTypeQuery);
+  const isPatient = useSelector(selectUserType);
   const user = useSelector(selectUser);
   const profile = useSelector(selectProfile);
   const [getProfile, { isLoading }] = useLazyGetProfileQuery();
@@ -72,11 +73,8 @@ function UserNavBar() {
           <Navbar.Collapse id="basic-navbar-nav">
             <div className="align-nav">
               <Nav className="me-auto">
-                <Link to={"/"} className="nav-link">
+                <Link to={"/dashboard"} className="nav-link">
                   Home
-                </Link>
-                <Link to={"/dashboard/booking"} className="nav-link">
-                  Booking
                 </Link>
                 {/* <NavDropdown title="Services" id="basic-nav-dropdown">
               <Link to={"/service"} className='dropdown-item'>Service</Link>
@@ -87,9 +85,16 @@ function UserNavBar() {
                 <Link to={"/dashboard/doctors"} className="nav-link">
                   Our Doctors
                 </Link>
-                <Link to={"/Contact"} className="nav-link">
-                  Contact Us
-                </Link>
+                {isPatient === 'Patient' ?
+                  <>
+                    <Link to={"/dashboard/appointments"} className="nav-link">
+                      Appointments
+                    </Link>
+                  </> :
+                  <Link to={"/dashboard/doctor_appointments"} className="nav-link">
+                    Appointments
+                  </Link>
+                }
               </Nav>
               <Nav className="justify-content-center">
                 {profile && !profile?.is_complete && (
@@ -115,7 +120,7 @@ function UserNavBar() {
                   id="basic-nav-dropdown"
                   align="end"
                 >
-                 
+
                   <button onClick={handleLogout} type="button">
                     Logout
                   </button>

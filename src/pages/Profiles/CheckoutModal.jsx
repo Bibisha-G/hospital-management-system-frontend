@@ -4,6 +4,7 @@ import moment from "moment";
 import { API_URL } from "../../Config/Config";
 
 const Checkout = ({ appointmentDetails, price }) => {
+  console.log(appointmentDetails,price);
   return (
     <>
       <div className="container">
@@ -32,7 +33,7 @@ const Checkout = ({ appointmentDetails, price }) => {
               method="POST"
             >
               <input type="hidden" name="product_name" value="test_product" />
-              <input type="hidden" name="price" value={price} />
+              <input type="hidden" name="price" value={price * 100} />
               <input
                 type="hidden"
                 name="metadata[appointment_details]"
@@ -67,6 +68,7 @@ function CheckoutModal({
   selectAppointmentType,
   ...props
 }) {
+  console.log("Hello");
   const [showCheckout, setShowCheckout] = useState(false);
 
   const handleConfirmClick = () => {
