@@ -8,7 +8,7 @@ export const appointmentApiSlice = apiSlice.injectEndpoints({
         return {
           url: `hospital/appointments/`,
           method: "POST",
-          body: {...body}
+          body: { ...body },
         };
       },
       transformErrorResponse: (response) => ({
@@ -16,10 +16,8 @@ export const appointmentApiSlice = apiSlice.injectEndpoints({
         error: response.error,
         message: response.data?.message,
       }),
-    })
+    }),
   }),
 });
 
-export const {
-  useCreateApointmentMutation
-} = appointmentApiSlice;
+export const { useCreateApointmentMutation } = appointmentApiSlice;
