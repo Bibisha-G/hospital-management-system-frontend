@@ -102,8 +102,8 @@ const PatientDashboard = () => {
         </Col>
       </Row>
       <Row className="pt-5">
-        <Col className="text-center">
-          <hr />
+        <hr />
+        <Col className="text-center pt-5">
           <h4>Your Reviews</h4>
           <div className="review-list">
             {profile?.reviews && profile.reviews.length > 0 ? (

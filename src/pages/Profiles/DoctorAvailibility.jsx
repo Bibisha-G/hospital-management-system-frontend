@@ -3,9 +3,10 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { selectProfile } from "../../features/auth/authSlice";
 import { useSelector } from "react-redux";
 import { useSetAvailabilityMutation } from "../../features/doctor/doctorApiSlice";
+import { ErrorToast, SuccessToast } from "../../components/Toasts/Toasts";
 function DoctorAvailability() {
-  const profile = useSelector(selectProfile)
-  const [makeAppointment, {isLoading}] = useSetAvailabilityMutation()
+  const profile = useSelector(selectProfile);
+  const [makeAppointment, { isLoading }] = useSetAvailabilityMutation();
   const days = [
     "Monday",
     "Tuesday",
@@ -47,11 +48,15 @@ function DoctorAvailability() {
     setDaysOfWeek(updatedDays);
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(daysOfWeek);
-    await makeAppointment({id:profile.id,body:daysOfWeek}).unwrap();
-    // TODO: Send data to Django backend
+    try {
+      await makeAppointment({ id: profile.id, body: daysOfWeek }).unwrap();
+      SuccessToast("Successfully updated your availability");
+    } catch (e) {
+      ErrorToast("Failed to setup availability");
+    }
   };
 
   return (
@@ -112,7 +117,7 @@ function DoctorAvailability() {
                           />
                           {timeSlots.length > 0 && (
                             <Button
-                              className="btn-danger rounded-0 text-black-50"
+                              className="btn-danger rounded-2 text-black-50"
                               size="sm"
                               onClick={() =>
                                 handleRemoveTimeSlot(dayIndex, slotIndex)
@@ -162,8 +167,12 @@ function DoctorAvailability() {
                 )}
                 {timeSlots.length < 5 && (
                   <Button
-                    className="btn-primary rounded-0 text-black-50"
+                    className="btn-primary rounded-2 text-black-50"
                     size="sm"
+                    style={{
+                      backgroundColor: "#1e81b0",
+                      border: "solid 1px #1e81b0",
+                    }}
                     onClick={() => handleAddTimeSlot(dayIndex)}
                   >
                     <span className="text-light">Add time slot</span>
@@ -174,7 +183,11 @@ function DoctorAvailability() {
           ))}
           <Button
             type="submit"
-            className="mt-5 btn-primary rounded-0 text-black-50 shadow"
+            className="mt-5 btn-primary rounded-2 text-black-50 shadow"
+            style={{
+              backgroundColor: "#1e81b0",
+              border: "solid 1px #1e81b0",
+            }}
           >
             <span className="text-light">Create Timeslots</span>
           </Button>

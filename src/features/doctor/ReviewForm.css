@@ -1,0 +1,36 @@
+.review-form-container {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.review-form-container h4 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.star {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.star:hover {
+  transform: scale(1.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-submit {
+  margin-top: 20px;
+  background-color: #1e81b0;
+  border: none;
+  width: 100%;
+  color: #fff;
+  font-weight: bold;
+}
+
+.btn-submit:hover {
+  background-color: #185a7d;
+  transition: all 0.2s ease-in-out;
+}

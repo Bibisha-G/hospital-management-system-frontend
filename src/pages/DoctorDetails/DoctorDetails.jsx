@@ -5,13 +5,19 @@ import { Link, useParams } from "react-router-dom";
 import member4 from "../../assets/doctor4.jpg";
 import "./DoctorDetails.css";
 import SelectSlot from "../Profiles/SelectSlot";
+import ReviewForm from "../../features/doctor/ReviewForm";
+import { useSelector } from "react-redux";
+import { selectUser, selectUserType } from "../../features/auth/authSlice";
 
 function DoctorDetails() {
+  const userType = useSelector(selectUserType);
+
   const { id } = useParams();
   const [getDepartmentInfo, { isLoading: loadingDept }] =
     useLazyGetDepartmentInfoQuery();
   const { data: doctor, isLoading } = useGetDoctorQuery(id);
   const [dept, setDept] = useState();
+  const user = useSelector(selectUser);
   console.log(doctor);
   useEffect(() => {
     let deptInfo = async (id) => {
@@ -71,7 +77,31 @@ function DoctorDetails() {
       </div>
       <div className="reviews mt-5 shadow rounded-4 border p-5">
         <h4 className="text-center text-dark">Reviews</h4>
-        ww
+        {userType === "Patient" && (
+          <ReviewForm doctor_profile_id={doctor.id} patient_id={user?.id} />
+        )}
+        <div className="review-list">
+          {doctor?.reviews && doctor.reviews.length > 0 ? (
+            doctor.reviews.map((review) => (
+              <div className="review" key={review.id}>
+                <p>{review.text}</p>
+                <div className="review-info">
+                  <div>
+                    <span>{review.user?.name}</span>
+                    <span>Rated: {review.rating}/5</span>
+                  </div>
+                  <span>
+                    {new Date(review.created_at).toLocaleDateString()}
+                  </span>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="text-center">
+              <p className=""> No reviews yet!</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
