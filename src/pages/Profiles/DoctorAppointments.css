@@ -1,28 +1,24 @@
 .doctor-appointments-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .appointment-card {
-    background-color: #fff;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    padding: 20px;
-    width: calc(33.33% - 20px);
-    min-width: 250px;
-    max-width: 350px;
-    text-align: center;
-  }
-  
-  .appointment-card h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .appointment-card p {
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.appointment-card {
+  background-color: #fff;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.appointment-card h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.appointment-card p {
+  font-size: 16px;
+  margin-bottom: 5px;
+}

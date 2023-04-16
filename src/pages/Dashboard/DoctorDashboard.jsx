@@ -12,16 +12,16 @@ import {
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ErrorToast, InfoToast } from "../../components/Toasts/Toasts";
-import { useGetPatientApointmentsQuery } from "../../features/appointment/appointmentApiSlice";
+import { useGetDoctorApointmentsQuery } from "../../features/appointment/appointmentApiSlice";
 import { selectProfile } from "../../features/auth/authSlice";
 
 const PatientDashboard = () => {
   const profile = useSelector(selectProfile);
   const navigate = useNavigate();
-  const { data: appointments } = useGetPatientApointmentsQuery(profile?.id);
+  const { data: appointments } = useGetDoctorApointmentsQuery(profile?.id);
   return (
     <Container>
-      <Row className="pb-5">
+      <Row className="p-5">
         <Col className="d-flex justify-content-end gap-2">
           <Button
             onClick={() => navigate(`doctors/${profile?.id}`)}
@@ -41,8 +41,8 @@ const PatientDashboard = () => {
           </Button>
         </Col>
       </Row>
-      <Row>
-        <Col md={4}>
+      <Row className="gap-5 d-flex justify-content-center">
+        <Col md={4} className="border rounded-4 p-5">
           <Card>
             <Card.Img variant="top" src={profile?.avatar_slug} />
             <Card.Body>
@@ -63,22 +63,35 @@ const PatientDashboard = () => {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={8}>
+        <Col
+          md={7}
+          style={{ maxHeight: 800, overflow: "auto" }}
+          className=" border rounded-4 p-5"
+        >
           <h4 className="text-center">Your Appointments</h4>
           {appointments && appointments.length > 0 ? (
             appointments.map((appointment) => (
               <Card key={appointment.id} className="my-3">
-                <Card.Body>
-                  <Card.Title>{appointment?.doctor_name}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                    {appointment?.date}
+                <Card.Body className="px-5">
+                  <Card.Title className="d-flex justify-content-between">
+                    Patient Name:{" "}
+                    <strong className="">{appointment?.patient_name}</strong>
+                  </Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted d-flex justify-content-between">
+                    When: <span>{appointment?.date}</span>
                   </Card.Subtitle>
-                  <Card.Text>
-                    {appointment?.time_slot?.start_time} -{" "}
-                    {appointment?.time_slot?.end_time}
+                  <Card.Text className="d-flex justify-content-between">
+                    Time:
+                    <span>
+                      {appointment?.time_slot?.start_time} -{" "}
+                      {appointment?.time_slot?.end_time}
+                    </span>
                   </Card.Text>
-                  <Card.Text>
-                    Charge: {appointment?.appointment_charge}
+                  <Card.Text className="d-flex justify-content-between">
+                    Charge:{" "}
+                    <span className="text-success">
+                      {appointment?.appointment_charge}
+                    </span>
                   </Card.Text>
                 </Card.Body>
               </Card>

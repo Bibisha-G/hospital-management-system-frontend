@@ -29,7 +29,10 @@ function DoctorDetails() {
     <div className="container">
       <div className="doctor rounded-4 p-5">
         <div className="doctor-img">
-          <img src={doctor?.avatar_slug === "" ? member4 : doctor?.avatar_slug} alt="Doctor" />
+          <img
+            src={doctor?.avatar_slug === "" ? member4 : doctor?.avatar_slug}
+            alt="Doctor"
+          />
         </div>
         <div className="doctor-info">
           <div className="doctor-info-comntent">
@@ -68,23 +71,7 @@ function DoctorDetails() {
       </div>
       <div className="reviews mt-5 shadow rounded-4 border p-5">
         <h4 className="text-center text-dark">Reviews</h4>
-        <div className="review-list">
-          {doctor?.reviews?.map((review) => (
-            <div className="review" key={review.id}>
-              <p>{review.text}</p>
-              <div className="review-info">
-                <div>
-                  <span>{review.user?.name}</span>
-                  <span>Rated: {review.rating}/5</span>
-                </div>
-                <span>{new Date(review.created_at).toLocaleDateString()}</span>
-              </div>
-            </div>
-          ))}
-          {doctor?.reviews?.length === 0 && (
-            <p className="text-center">No reviews yet</p>
-          )}
-        </div>
+        ww
       </div>
     </div>
   );
