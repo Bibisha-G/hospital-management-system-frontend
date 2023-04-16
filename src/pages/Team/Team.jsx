@@ -88,7 +88,7 @@ function Team() {
             <div className="col-lg-4 col-sm-6 mb-30" key={doctor.id} onClick={() => goToDetails(doctor.id)}>
               <div className="team-member">
                 <div className="team-media">
-                  <img src={member4} />
+                  <img src={doctor?.avatar_slug === "" ? member4 : doctor?.avatar_slug} />
                 </div>
                 <div className="team-info">
                   <div className="team-info-comntent">

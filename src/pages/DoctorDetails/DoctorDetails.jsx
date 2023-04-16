@@ -12,7 +12,7 @@ function DoctorDetails() {
     useLazyGetDepartmentInfoQuery();
   const { data: doctor, isLoading } = useGetDoctorQuery(id);
   const [dept, setDept] = useState();
-
+  console.log(doctor);
   useEffect(() => {
     let deptInfo = async (id) => {
       let response = await getDepartmentInfo(id).unwrap();
@@ -29,7 +29,7 @@ function DoctorDetails() {
     <div className="container">
       <div className="doctor rounded-4 p-5">
         <div className="doctor-img">
-          <img src={member4} alt="Doctor" />
+          <img src={doctor?.avatar_slug ?? member4} alt="Doctor" />
         </div>
         <div className="doctor-info">
           <div className="doctor-info-comntent">

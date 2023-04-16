@@ -118,7 +118,7 @@ function UserNavBar() {
                   title={
                     <img
                       className="thumbnail-image rounded-circle img-profile"
-                      src={logo}
+                      src={profile?.avatar_slug === "" ? logo : profile?.avatar_slug}
                       alt="user pic"
                     />
                   }
