@@ -127,7 +127,7 @@ const Router = createBrowserRouter([
                 ],
               },
               {
-                path: "setup_availibility",
+                path: "setup_availability",
                 element: <DoctorAvailibilityContainer />,
               },
             ],
