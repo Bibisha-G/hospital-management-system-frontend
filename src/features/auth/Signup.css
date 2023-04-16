@@ -1,0 +1,7 @@
+.doctor-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.doctor-link {
+  color: blue;
+}

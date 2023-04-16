@@ -1,0 +1,44 @@
+.doctor {
+    display: flex;
+    background-color: #fff;
+    text-align: center;
+    padding: 35px 40px 50px;
+    border-radius: 20px;
+    transition: all .5s;
+    z-index: 1;
+    position: relative;
+}
+.doctor-img .doctor-img:before {
+    content: "";
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transition: all .5s;
+    opacity: .2;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+}
+.doctor-img img {
+    -webkit-mask-image: url(../../assets/download2323.png);
+    mask-image: url(../../assets/download2323.png);
+    -webkit-mask-position: center center;
+    mask-position: center center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+}
+.doctor-info {
+    margin-bottom: 25px;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+.doctor-info-comntent {
+    margin-bottom: 25px;
+}

@@ -1,0 +1,32 @@
+.no-border {
+  border: 0;
+}
+
+.input-group {
+  border: 0;
+  background-color: rgba(92, 92, 92, 0);
+}
+
+.input-group-text {
+  border: 0;
+  background-color: rgba(233, 231, 231, 0.349);
+}
+
+.btn-blue {
+  background-color: rgb(69, 147, 248);
+  border-color: rgb(69, 147, 248);
+}
+
+.field-color {
+  border: 0;
+  background-color: rgba(233, 231, 231, 0.349);
+}
+
+.field-color:focus {
+  color: rgb(0, 0, 0);
+}
+
+.public-icon {
+  max-width: 80%;
+  max-height: 80%;
+}

@@ -1,0 +1,56 @@
+.baseStyle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  border-width: 2;
+  border-radius: 2;
+  border-color: rgba(0, 0, 0, 0.534);
+  border-style: dashed;
+  background-color: "#fafafa";
+  color: "#bdbdbd";
+  outline: none;
+  transition: border 0.24s ease-in-out;
+}
+
+.focusedStyle {
+  border-color: rgb(19, 179, 233);
+}
+
+.acceptStyle {
+  border-color: rgb(4, 160, 4);
+}
+
+.rejectStyle {
+  border-color: red;
+}
+
+.thumbsContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 16;
+  justify-content: center;
+}
+
+.thumb {
+  max-width: 500;
+  max-height: 500;
+  padding: 5;
+  box-sizing: border-box;
+}
+
+.thumbInner {
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.img {
+  width: auto;
+  max-height: 300px;
+  object-fit: contain;
+}
